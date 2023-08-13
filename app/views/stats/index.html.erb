@@ -31,7 +31,7 @@
          word_count: ts("Word Count:") }.each do |stat, stat_text| %>
       <% stat == :word_count ? html_class = "words" : html_class = stat.to_s.humanize.downcase %>
       <dt class="<%= html_class %>"><%= stat_text %></dt>
-      <dd class="<%= html_class %>"><%= number_with_delimiter(@totals[stat]) %></dd>
+      <dd class="<%= html_class %>"><%= number_with_delimiter(@totals[stat])%></dd>
     <% end %>
     <dt class="hits"><%= ts("Hits:") %></dt>
     <dd class="hits"><%= number_with_delimiter(@totals[:hits]) %></dd>
