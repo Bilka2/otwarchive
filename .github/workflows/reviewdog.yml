@@ -15,6 +15,6 @@ jobs:
       - name: erb-lint
         uses: tk0miya/action-erblint@667687e73b44e7b7a710a1204b180f49f80ebb5e
         with:
-          use_bundler: false
+          use_bundler: true
           reporter: github-pr-check # default
           
