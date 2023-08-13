@@ -3,7 +3,7 @@
 name: reviewdog
 on: [pull_request]
 permissions:
-  checks: read
+  checks: write
 jobs:
   erb-lint:
     name: runner / erb-lint
