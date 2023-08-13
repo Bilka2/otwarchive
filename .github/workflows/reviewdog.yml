@@ -1,0 +1,20 @@
+# based on https://github.com/tk0miya/action-erblint/blob/main/README.md 
+
+name: reviewdog
+on: [pull_request]
+jobs:
+  erb-lint:
+    name: runner / erb-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: erb-lint
+        uses: reviewdog/action-erblint@667687e73b44e7b7a710a1204b180f49f80ebb5e
+        with:
+          use_bundler: false
+          reporter: github-pr-check # default
+          
