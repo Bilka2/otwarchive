@@ -2,7 +2,8 @@
 
 name: reviewdog
 on: [pull_request]
-permissions: {}
+permissions:
+  checks: read
 jobs:
   erb-lint:
     name: runner / erb-lint
