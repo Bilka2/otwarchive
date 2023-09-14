@@ -476,7 +476,7 @@ describe CommentsController do
 
     context "when the commentable is an admin post" do
       context "where all comments are disabled" do
-        let(:admin_post) { create(:admin_post, comment_permissions: :disable_all) }
+        let (:admin_post) { create(:admin_post, comment_permissions: :disable_all) }
 
         it "shows an error and redirects" do
           post :create, params: { admin_post_id: admin_post.id, comment: anon_comment_attributes }

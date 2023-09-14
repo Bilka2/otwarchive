@@ -163,7 +163,6 @@ class CommentsController < ApplicationController
 
   def check_not_replying_to_spam
     return unless @commentable.respond_to?(:approved?) && !@commentable.approved?
-
     flash[:error] = t("comments.check_not_replying_to_spam.error")
     redirect_back(fallback_location: root_path)
   end
