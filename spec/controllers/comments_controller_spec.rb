@@ -473,13 +473,13 @@ describe CommentsController do
       end
 
       context "when commentable is a tag" do
-        let(:comment) { create(:comment, :on_tag, pseud: user.default_pseud) }
+        let (:comment) { create(:comment, :on_tag, pseud: user.default_pseud) }
 
         it_behaves_like "guest cannot reply to a user with guest replies disabled"
       end
 
       context "when commentable is a work" do
-        let(:comment) { create(:comment, pseud: user.default_pseud) }
+        let(:comment) {create(:comment, pseud: user.default_pseud) }
 
         it_behaves_like "guest cannot reply to a user with guest replies disabled"
       end

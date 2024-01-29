@@ -16,7 +16,7 @@
         <%= hidden_field_tag :view_full_work, params[:view_full_work] %>
       <% end %>
 
-      <% if controller.controller_name == "inbox" && params[:filters] %>
+      <% if controller.controller_name == "inbox" && params[:filters]  %>
         <%= hidden_field_tag "filters[read]", params[:filters][:read] %>
         <%= hidden_field_tag "filters[replied_to]", params[:filters][:replied_to] %>
         <%= hidden_field_tag "filters[date]", params[:filters][:date] %>
@@ -82,7 +82,7 @@
           </dd>
           <dt><%= f.label "email_for_#{commentable.id}", ts("Guest email: ") %></dt>
           <dd>
-            <%= f.text_field :email, :id => "comment_email_for_#{commentable.id}" %>
+              <%= f.text_field :email, :id => "comment_email_for_#{commentable.id}" %>
             <%= live_validation_for_field("comment_email_for_#{commentable.id}", :failureMessage => ts('Please enter your email address.')) %>
           </dd>
         </dl>

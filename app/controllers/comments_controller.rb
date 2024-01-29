@@ -158,7 +158,7 @@ class CommentsController < ApplicationController
   def check_frozen
     return unless @commentable.respond_to?(:iced?) && @commentable.iced?
 
-    flash[:error] = t("comments.check_frozen.error")
+    flash[:error] = t('comments.check_frozen.error')
     redirect_back(fallback_location: root_path)
   end
 
@@ -654,8 +654,8 @@ class CommentsController < ApplicationController
                   page: options[:page],
                   anchor: options[:anchor])
     else
-      if commentable.is_a?(Chapter) && (options[:view_full_work] || current_user.try(:preference).try(:view_full_works))
-        commentable = commentable.work
+      if commentable.is_a?(Chapter) && (options[:view_full_work] || current_user.try(:preference).try(:view_full_works)) #change
+        commentable = commentable.work #BROKEN change
       end
       redirect_to controller: commentable.class.to_s.underscore.pluralize,
                   action: :show,
