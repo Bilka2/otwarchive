@@ -1,10 +1,10 @@
 require 'faker'
 FactoryBot.define do
   factory :abuse_report do
-    email { Faker::Internet.email }
+    email { "me@example.com" }
     url { "http://archiveofourown.org/tags/2000%20AD%20(Comics)/works" }
-    comment { Faker::Lorem.paragraph(sentence_count: 1) }
-    summary { Faker::Lorem.sentence(word_count: 1) }
+    comment { "bla blablalba" }
+    summary { "less" }
     language { "Francais" }
   end
 end
