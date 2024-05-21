@@ -100,7 +100,7 @@ gem 'activemodel-serializers-xml'
 gem 'rack-dev-mark', '>=0.7.8'
 
 #Phrase-app
-gem 'phraseapp-in-context-editor-ruby', git: "https://github.com/Bilka2/phraseapp-in-context-editor-ruby", branch: "ruby-3.1"
+gem 'phraseapp-in-context-editor-ruby', git: "https://github.com/Bilka2/phraseapp-in-context-editor-ruby", branch: "ignored-keys"
 
 # For URL mangling
 gem 'addressable'

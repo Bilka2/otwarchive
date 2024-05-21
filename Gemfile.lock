@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/Bilka2/phraseapp-in-context-editor-ruby
-  revision: 68200bc4e55ffedfbe8d3b14fea3c53688552c10
-  branch: ruby-3.1
+  revision: a3dd91863c6b8f6626a1f33ff82a7ec976161e1b
+  branch: ignored-keys
   specs:
-    phraseapp-in-context-editor-ruby (2.0.0)
+    phraseapp-in-context-editor-ruby (3.1.0)
       i18n (~> 1.0)
       json (~> 2.0)
       request_store (~> 1.2)

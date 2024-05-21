@@ -2392,7 +2392,6 @@ Rails/Output:
   Exclude:
     - 'app/models/search/indexer.rb'
     - 'config/deploy.rb'
-    - 'config/initializers/monkeypatches/fix_phraseapp.rb'
     - 'config/initializers/monkeypatches/mail_disable_starttls.rb'
 
 # Offense count: 4
