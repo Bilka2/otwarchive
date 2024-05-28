@@ -97,6 +97,51 @@ module SearchCounts
   end
 
   ######################################################################
+  # FANDOM COUNTS FOR USER/PSEUD DASHBOARD
+  ######################################################################
+
+  def user_fandoms_query(user)
+    WorkQuery.new(user_ids: [user.id],
+                  show_restricted: User.current_user.present?)
+  end
+
+  def fandom_count_for_user(user)
+    Rails.cache.fetch(fandom_cache_key(user, :fandom_count),
+                      dashboard_cache_options) do
+      user_fandoms_query(user).field_count(:fandom_ids)
+    end
+  end
+
+  def fandom_ids_for_user(user)
+    Rails.cache.fetch(fandom_cache_key(user, :fandom_ids),
+                      dashboard_cache_options) do
+      user_fandoms_query(user).field_values(:fandom_ids)
+    end
+  end
+
+  def pseud_fandoms_query(pseud)
+    WorkQuery.new(pseud_ids: [pseud.id])
+  end
+
+  def fandom_count_for_pseud(pseud)
+    Rails.cache.fetch(fandom_cache_key(pseud, :fandom_count),
+                      dashboard_cache_options) do
+      pseud_fandoms_query(pseud).field_count(:fandom_ids)
+    end
+  end
+
+  def fandom_ids_for_pseud(pseud)
+    Rails.cache.fetch(fandom_cache_key(pseud, :fandom_ids),
+                      dashboard_cache_options) do
+      pseud_fandoms_query(pseud).field_values(:fandom_ids)
+    end
+  end
+
+  def fandom_cache_key(creator, key)
+    "work_count__#{key}_#{creator.model_name.cache_key}_#{creator.id}_#{logged_in}"
+  end
+
+  ######################################################################
   # USEFUL FUNCTIONS
   ######################################################################
 

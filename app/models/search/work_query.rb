@@ -305,6 +305,21 @@ class WorkQuery < Query
     { aggs: aggs }
   end
 
+  # Get the id and work count of the tag_count most used fandom tags
+  # Use SearchCounts#fandom_ids_for_* for getting all fandom tags with counts
+  def fandom_tag_counts(tag_count)
+    response = $elasticsearch.search(
+      index: index_name,
+      body: {
+        query: filtered_query,
+        size: 0,
+        aggs: { fandom: { terms: { field: "fandom_ids", size: tag_count } } }
+      }
+    )
+    tag_counts = response.dig("aggregations", "fandom", "buckets")
+    tag_counts.map(&:values).to_h
+  end
+
   def works_per_language(languages_count)
     response = $elasticsearch.search(index: index_name, body: {
                                        size: 0,

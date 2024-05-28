@@ -2,6 +2,8 @@
 <h2 class="heading">
   <% if @collection %>
     <%= link_to(@collection.title, @collection) %> > <%= ts("Fandoms") %>
+  <% elsif @user %>
+    <%= link_to @user.login, @user %> > <%= ts("Fandoms") %>
   <% elsif @medium %>
     <%= link_to ts("Fandoms"), media_path %> > <%= @medium.name %>
   <% else %>
@@ -43,7 +45,11 @@
         <ul class="tags index group">
           <% for fandom in fandoms %>
             <li>
-              <%= link_to_tag_works(fandom, collection: @collection) %>
+              <% if @user %>
+                <%= link_to fandom.name, user_works_path(@user, :fandom_id => fandom.id) %>
+              <% else %>
+                <%= link_to_tag_works(fandom, collection: @collection) %>
+              <% end %>
               <% if fandom.respond_to?(:count) %>
                 (<%= fandom.count %>)
               <% elsif @counts&.key?(fandom.id) %>

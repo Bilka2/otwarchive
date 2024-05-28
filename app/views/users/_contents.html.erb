@@ -4,33 +4,13 @@
   <div class="fandom listbox group" id="user-fandoms">
     <h3 class="heading"><%= ts("Fandoms") %></h3>
     <ol class="index group">
-      <% @fandoms.each_with_index do |fandom, i| %>
-        <% if i>= ArchiveConfig.NUMBER_OF_ITEMS_VISIBLE_IN_DASHBOARD && !params[:expand_fandoms] %>
-          <li class="more hidden">
-        <% else %>
-          <li>
-        <% end %>
-          <% if fandom.merger %>
-            <%= link_to fandom.name, {:controller => :works, :user_id => @user, :pseud_id => @pseud, :fandom_id => fandom.merger.id} %> (<%= fandom.work_count %>)
-          <% else %>
-            <%= link_to fandom.name, {:controller => :works, :user_id => @user, :pseud_id => @pseud, :fandom_id => fandom.id} %> (<%= fandom.work_count %>)
-          <% end %>
+      <% @fandoms.each do |fandom| %>
+        <li>
+          <%= link_to fandom.name, {:controller => :works, :user_id => @user, :pseud_id => @pseud, :fandom_id => fandom.id} %> (<%= @counts[fandom.id] %>)
         </li>
      <% end %>
     </ol>
-    <% if @fandoms.length > ArchiveConfig.NUMBER_OF_ITEMS_VISIBLE_IN_DASHBOARD %>
-      <p class="actions">
-        <noscript>  
-          <% if params[:expand_fandoms] %>
-            <%= link_to ts("Collapse Fandoms List"), [@user, @pseud] %>
-          <% else %>
-            <%= link_to ts("Expand Fandoms List"), url_for(:expand_fandoms => true) %>
-          <% end %>
-        </noscript>
-        <a class="hidden" id="expand-fandoms" href="#"><%= ts("Expand Fandoms List") %></a>
-        <a class="hidden" id="collapse-fandoms" href="#"><%= ts("Collapse Fandoms List") %></a>
-      </p>
-    <% end %>
+    <ul class="actions" role="navigation"><li><%= span_if_current ts('Fandoms (%{count})', count: @total_fandoms), user_fandoms_path(@user) %></li></ul>
   </div>
   <% end %> 
               

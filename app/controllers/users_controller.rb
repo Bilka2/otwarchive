@@ -23,6 +23,19 @@ class UsersController < ApplicationController
 
     visible = visible_items(current_user)
 
+    @counts = SearchCounts.user_fandoms_query(@user).fandom_tag_counts(ArchiveConfig.NUMBER_OF_ITEMS_VISIBLE_IN_DASHBOARD)
+    @fandoms = Fandom.in_order_of(:id, @counts.keys)
+    @total_fandoms = SearchCounts.fandom_count_for_user(@user)
+
+    # I bet there is a way to get this ordered limited result directly from elasticsearch
+    # after all the work filters etc are doing it
+    #@counts = SearchCounts.fandom_ids_for_user(@user).sort_by { |counts| counts.second }.last(5).reverse.to_h
+    #@fandoms = Fandom.in_order_of(:id, @counts.keys)
+    #@counts = SearchCounts.fandom_ids_for_user(@user)
+    #@fandoms = Fandom.all.where(id: @counts.keys).sort_by {|a| @counts[a.id]}.reverse
+    #@counts = SearchCounts.fandom_ids_for_user(@user)
+    #@fandoms = Fandom.in_order_of(:id, @counts.keys.sort_by {|a| @counts[a]}).reverse_order()
+
     @works = visible[:works].order('revised_at DESC').limit(ArchiveConfig.NUMBER_OF_ITEMS_VISIBLE_IN_DASHBOARD)
     @series = visible[:series].order('updated_at DESC').limit(ArchiveConfig.NUMBER_OF_ITEMS_VISIBLE_IN_DASHBOARD)
     @bookmarks = visible[:bookmarks].order('updated_at DESC').limit(ArchiveConfig.NUMBER_OF_ITEMS_VISIBLE_IN_DASHBOARD)
@@ -259,14 +272,6 @@ class UsersController < ApplicationController
 
     visible_works = visible_works.revealed.non_anon
     visible_series = visible_series.exclude_anonymous
-    @fandoms = if @user == User.orphan_account
-                 []
-               else
-                 Fandom.select("tags.*, count(DISTINCT works.id) as work_count").
-                   joins(:filtered_works).group("tags.id").merge(visible_works).
-                   where(filter_taggings: { inherited: false }).
-                   order('work_count DESC').load
-               end
 
     {
       works: visible_works,

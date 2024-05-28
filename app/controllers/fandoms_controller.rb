@@ -19,6 +19,11 @@ class FandomsController < ApplicationController
       else
         raise ActiveRecord::RecordNotFound, "Couldn't find media category named '#{params[:medium_id]}'"
       end
+    elsif params[:user_id]
+      @user = User.find_by!(login: params[:user_id])
+
+      @counts = SearchCounts.fandom_ids_for_user(@user)
+      @fandoms = Fandom.where(id: @counts.keys).by_name
     else
       redirect_to media_path(notice: "Please choose a media category to start browsing fandoms.")
       return
