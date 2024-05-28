@@ -9,7 +9,7 @@ PhraseApp::InContextEditor.configure do |config|
   # Configure with your project id and account id. You can find the
   # project id in your project settings and account id in your account
   # settings (https://app.phrase.com/)
-  config.project_id = "47f2a1b0cf81df327878c6d89cee7af3"
+  config.project_id = "a3667b8095533c2b3f8d3ac946bb642f"
   config.account_id = "foo"
 
   # Configure an array of key names that should not be handled
