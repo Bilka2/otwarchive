@@ -4,7 +4,7 @@ require "support/i18n_newlines_tasks"
 describe I18n do
   let(:i18n) { I18n::Tasks::BaseTask.new }
   let(:missing_keys) { i18n.missing_keys(locales: ["en"], types: [:used, :plural]) }
-  let(:unused_keys) { i18n.unused_keys(locales: ["en"]) }
+  let(:unused_keys) { i18n.unused_keys }
   let(:newlines) { i18n.extend(I18nNewlinesTasks).newlines(locales: ["en"]) }
 
   it "en does not have missing keys" do
@@ -12,9 +12,9 @@ describe I18n do
                             "Missing #{missing_keys.leaves.count} i18n keys, run `i18n-tasks missing -l en -t used,plural' to show them"
   end
 
-  it "en does not have unused keys" do
+  it "all languages do not have unused keys" do
     expect(unused_keys).to be_empty,
-                           "#{unused_keys.leaves.count} unused i18n keys, run `i18n-tasks unused -l en' to show them"
+                           "#{unused_keys.leaves.count} unused i18n keys, run `i18n-tasks unused' to show them"
   end
 
   it "en files are normalized" do
