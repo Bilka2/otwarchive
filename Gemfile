@@ -99,8 +99,8 @@ gem 'activemodel-serializers-xml'
 # Add a clean notifier that shows we are on dev or test
 gem 'rack-dev-mark', '>=0.7.8'
 
-#Phrase-app
-gem 'phraseapp-in-context-editor-ruby', '>=1.0.6'
+# Phrase
+gem "phraseapp-in-context-editor-ruby", "~> 3.1"
 
 # For URL mangling
 gem 'addressable'
