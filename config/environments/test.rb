@@ -73,5 +73,5 @@ Rails.application.configure do
 
   # We use example.com in our tests, so some redirects may be flagged as unsafe.
   # In other environments, we should not expect this, so just override the setting here.
-  config.action_controller.raise_on_open_redirects = false
+  config.action_controller.raise_on_open_redirects = true
 end
