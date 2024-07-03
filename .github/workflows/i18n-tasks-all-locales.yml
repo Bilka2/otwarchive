@@ -1,0 +1,59 @@
+name: i18n-tasks for all locales
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  unused-keys:
+    if: github.head_ref == 'phrase-translations'
+    name: Check unused keys for all locales
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby and run bundle install
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run i18n-tasks
+        run: bundle exec i18n-tasks unused -f keys > unused-keys.txt
+
+      - name: Check that there are zero unused locale keys
+        run: "! test -s unused-keys.txt"
+
+      - name: Upload list of unused locale keys
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: unused-keys
+          path: unused-keys.txt
+
+  inconsistent-interpolations:
+    if: github.head_ref == 'phrase-translations'
+    name: Check consistent interpolations for all locales
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby and run bundle install
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run i18n-tasks
+        run: bundle exec i18n-tasks check-consistent-interpolations -f yaml > inconsistent-interpolations.txt
+
+      - name: Check that there are zero inconsistent interpolations
+        run: "! test -s inconsistent-interpolations.txt"
+
+      - name: Upload yaml of inconsistent interpolations
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: inconsistent-interpolations
+          path: inconsistent-interpolations.txt
