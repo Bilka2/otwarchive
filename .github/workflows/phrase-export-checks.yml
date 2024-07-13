@@ -1,13 +1,41 @@
-name: i18n-tasks for all locales
+name: Check Phrase translations
 on:
   pull_request:
   workflow_dispatch:
 
 jobs:
+  en-keys-to-remove:
+    if: github.head_ref == 'phrase-translations'
+    runs-on: ubuntu-latest
+    name: Check for outdated English keys in Phrase
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby and run bundle install
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run i18n-tasks
+        run: bundle exec i18n-tasks missing -t diff -f keys en | bundle exec i18n-tasks tree-mv -f keys "en.{*}" "\1" > en-keys-to-remove.txt
+
+      - name: Check that there are zero keys in other locales that don't exist in English
+        run: "! test -s en-keys-to-remove.txt"
+
+      - name: Upload list of English keys that should be removed from Phrase
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: en-keys-to-remove
+          path: en-keys-to-remove.txt
+
   unused-keys:
     if: github.head_ref == 'phrase-translations'
-    name: Check unused keys for all locales
     runs-on: ubuntu-latest
+    needs: en-keys-to-remove
+    name: Check unused keys for all locales
 
     steps:
       - name: Check out code
@@ -33,8 +61,8 @@ jobs:
 
   inconsistent-interpolations:
     if: github.head_ref == 'phrase-translations'
-    name: Check consistent interpolations for all locales
     runs-on: ubuntu-latest
+    name: Check consistent interpolations for all locales
 
     steps:
       - name: Check out code
@@ -56,4 +84,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: inconsistent-interpolations
-          path: inconsistent-interpolations.txt
+          path: inconsistent-interpolations.yml
