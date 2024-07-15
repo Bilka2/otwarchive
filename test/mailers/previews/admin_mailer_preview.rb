@@ -2,7 +2,7 @@ class AdminMailerPreview < ApplicationMailerPreview
   # Sent to an admin when they get a comment on an admin post
   def comment_notification
     commenter = create(:user, :for_mailer_preview)
-    commenter_pseud = create(:pseud, user: commenter, name: "Custom pseud")
+    commenter_pseud = create(:pseud, user: commenter, name: 'Custom pseud')
     comment = create(:comment, pseud: commenter_pseud)
     AdminMailer.comment_notification(comment.id)
   end
