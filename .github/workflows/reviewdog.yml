@@ -26,7 +26,7 @@ jobs:
         uses: reviewdog/action-rubocop@7ef50b200dba9fb54c97392337ac7e82d692c4bd
         with:
           use_bundler: true
-          reporter: github-pr-check
+          reporter: github-pr-annotations
           skip_install: true
 
   erb-lint:
@@ -47,4 +47,4 @@ jobs:
         uses: tk0miya/action-erblint@667687e73b44e7b7a710a1204b180f49f80ebb5e
         with:
           use_bundler: true
-          reporter: github-pr-check # default
+          reporter: github-pr-annotations
