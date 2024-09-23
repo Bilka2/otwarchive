@@ -27,7 +27,7 @@ jobs:
         with:
           use_bundler: true
           reporter: github-pr-check
-          skip_install: true
+          skip_inssdstall: true
           fail_on_error: true
 
   erb-lint:
