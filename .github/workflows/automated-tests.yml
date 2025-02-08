@@ -90,6 +90,46 @@ jobs:
             arguments: spec/controllers/api/v2
           - command: rspec
             arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
+          - command: rspec
+            arguments: spec/controllers/api/v2
 
     steps:
       - name: Check out code
