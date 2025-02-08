@@ -37,7 +37,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark ]
            }.to_json,
            headers: valid_headers
-      assert_equal 200, response.status
+      expect(response.status).to eq(200)
     end
 
     it "returns 200 OK when no bookmarks are created" do
@@ -46,7 +46,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark ]
            }.to_json,
            headers: valid_headers
-      assert_equal 200, response.status
+      expect(response.status).to eq(200)
     end
 
     it "does not create duplicate bookmarks for the same archivist and external URL" do
@@ -56,8 +56,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark, bookmark ]
            }.to_json,
            headers: valid_headers
-      bookmarks = Bookmark.where(pseud_id: pseud_id)
-      assert_equal bookmarks.count, 1
+      expect(Bookmark.where(pseud_id: pseud_id).count).to eq(1)
     end
 
     it "passes back any original references unchanged" do
@@ -67,12 +66,12 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
            }.to_json,
            headers: valid_headers
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal "123", bookmark_response[:original_id], "Original reference should be passed back unchanged"
-      assert_equal "http://example.com", bookmark_response[:original_url], "Original URL should be passed back unchanged"
+      expect(bookmark_response[:original_id]).to eq("123") # Original reference should be passed back unchanged
+      expect(bookmark_response[:original_url]).to eq("http://example.com") # Original URL should be passed back unchanged
     end
 
     it "returns the URL of the created bookmark" do
-      pseud_id = archivist.default_pseud.id
+      pseud_id = archivist.default_pseud_id
       post "/api/v2/bookmarks",
            params: { archivist: archivist.login,
              bookmarks: [ bookmark ]
@@ -80,7 +79,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
            headers: valid_headers
       first_bookmark = Bookmark.where(pseud_id: pseud_id).first
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal bookmark_response[:archive_url], bookmark_url(first_bookmark)
+      expect(bookmark_response[:archive_url]).to eq(first_bookmark)
     end
   end
 
@@ -91,7 +90,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
       post "/api/v2/bookmarks",
            params: { archivist: archivist.login }.to_json,
            headers: valid_headers
-      assert_equal 400, response.status
+      expect(response.status).to eq(400)
     end
 
     it "returns an error message if no URL is specified" do
@@ -100,10 +99,9 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark.except(:url) ]
            }.to_json,
            headers: valid_headers
-      assert_equal 400, response.status
+      expect(response.status).to eq(400)
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal bookmark_response[:messages].first,
-                   "This bookmark does not contain a URL to an external site. Please specify a valid, non-AO3 URL."
+      expect(bookmark_response[:messages].first).to eq("This bookmark does not contain a URL to an external site. Please specify a valid, non-AO3 URL.")
     end
 
     it "returns an error message if the URL is on AO3" do
@@ -113,10 +111,9 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark.merge(url: work_url(work)) ]
            }.to_json,
            headers: valid_headers
-      assert_equal 400, response.status
+      expect(response.status).to eq(400)
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal bookmark_response[:messages].first,
-                   "Url could not be reached. If the URL is correct and the site is currently down, please try again later."
+      expect(bookmark_response[:messages].first).to eq("Url could not be reached. If the URL is correct and the site is currently down, please try again later.")
     end
 
     it "returns an error message if there is no fandom" do
@@ -125,10 +122,9 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark.merge(fandom_string: "") ]
            }.to_json,
            headers: valid_headers
-      assert_equal 400, response.status
+      expect(response.status).to eq(400)
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal bookmark_response[:messages].first,
-                   "This bookmark does not contain a fandom. Please specify a fandom."
+      expect(bookmark_response[:messages].first).to eq("This bookmark does not contain a fandom. Please specify a fandom.")
     end
 
     it "returns an error message if there is no title" do
@@ -137,9 +133,9 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark.merge(title: "") ]
            }.to_json,
            headers: valid_headers
-      assert_equal 400, response.status
+      expect(response.status).to eq(400)
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal bookmark_response[:messages].first, "Title can't be blank"
+      expect(bookmark_response[:messages].first).to eq("Title can't be blank")
     end
 
     it "returns an error message if there is no author" do
@@ -148,10 +144,9 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
              bookmarks: [ bookmark.merge(author: "") ]
            }.to_json,
            headers: valid_headers
-      assert_equal 400, response.status
+      expect(response.status).to eq(400)
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      assert_equal bookmark_response[:messages].first,
-                   "This bookmark does not contain an external author name. Please specify an author."
+      expect(bookmark_response[:messages].first).to eq("This bookmark does not contain an external author name. Please specify an author.")
     end
   end
 
