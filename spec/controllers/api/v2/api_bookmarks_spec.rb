@@ -79,7 +79,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
            headers: valid_headers
       first_bookmark = Bookmark.where(pseud_id: pseud_id).first
       bookmark_response = JSON.parse(response.body, symbolize_names: true)[:bookmarks].first
-      expect(bookmark_response[:archive_url]).to eq(first_bookmark)
+      expect(bookmark_response[:archive_url]).to eq(bookmark_url(first_bookmark))
     end
   end
 
