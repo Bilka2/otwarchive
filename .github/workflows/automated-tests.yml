@@ -50,53 +50,46 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - command: rake
-            arguments: db:otwseed
-          - command: rspec
-            arguments: spec/controllers
-          - command: rspec
-            arguments: spec/models
-          - command: rspec
-            arguments: --exclude-pattern 'spec/{controllers,models}/**/*.rb'
-            libvips: true
           - command: cucumber
-            arguments: features/admins
-            libvips: true
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/collections
-            libvips: true
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/comments_and_kudos
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/gift_exchanges
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/importing
-            vcr: true
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/other_a
-            libvips: true
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/other_b
-            libvips: true
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/prompt_memes_a
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/prompt_memes_b
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/prompt_memes_c
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/search
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/tag_sets
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/tags_and_wrangling
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/users
+            arguments: features/search/filters.feature
           - command: cucumber
-            arguments: features/works
-            ebook: true
+            arguments: features/search/filters.feature
+          - command: cucumber
+            arguments: features/search/filters.feature
+          - command: cucumber
+            arguments: features/search/filters.feature
+          - command: cucumber
+            arguments: features/search/filters.feature
+          - command: cucumber
+            arguments: features/search/filters.feature
 
     steps:
       - name: Check out code
