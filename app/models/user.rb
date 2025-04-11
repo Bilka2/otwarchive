@@ -18,8 +18,26 @@ class User < ApplicationRecord
   # properly
   include BackwardsCompatiblePasswordDecryptor
 
+  # https://github.com/otwcode/otwarchive/compare/master...tickinginstant:otwarchive:AO3-6439-set-current-user
   # Allows other models to get the current user with User.current_user
-  cattr_accessor :current_user
+  thread_cattr_accessor :current_user#, instance_accessor: false
+
+  # oooor even https://github.com/otwcode/otwarchive/compare/master...tickinginstant:otwarchive:AO3-6439-use-current-attributes
+  # Classes that extend ActiveSupport::CurrentAttributes can be used to
+  # store values that get reset at the end of every request.
+  # also for should_update_wrangling_activity
+
+  # class << self
+  #   private :current_user=
+  # end
+  #
+  # def self.as_user(user)
+  #   original = self.current_user
+  #   self.current_user = user
+  #   yield
+  # ensure
+  #   self.current_user = original # or nil??
+  # end
 
   # Authorization plugin
   acts_as_authorized_user
