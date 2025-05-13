@@ -16,28 +16,28 @@ module SearchCounts
   end
 
   def work_count_for_collection(collection)
-    Rails.cache.fetch(collection_cache_key(collection, :works),
+    Rails.cache.fetch(collection_cache_key(collection, :works), # i18n-locale-independent
                       collection_cache_options) do
       collection_works_query(collection).count
     end
   end
 
   def bookmarkable_count_for_collection(collection)
-    Rails.cache.fetch(collection_cache_key(collection, :bookmarkables),
+    Rails.cache.fetch(collection_cache_key(collection, :bookmarkables), # i18n-locale-independent
                       collection_cache_options) do
       collection_bookmarks_query(collection).bookmarkable_query.count
     end
   end
 
   def fandom_count_for_collection(collection)
-    Rails.cache.fetch(collection_cache_key(collection, :fandom_count),
+    Rails.cache.fetch(collection_cache_key(collection, :fandom_count), # i18n-locale-independent
                       collection_cache_options) do
       collection_works_query(collection).field_count(:fandom_ids)
     end
   end
 
   def fandom_ids_for_collection(collection)
-    Rails.cache.fetch(collection_cache_key(collection, :fandom_ids),
+    Rails.cache.fetch(collection_cache_key(collection, :fandom_ids), # i18n-locale-independent
                       collection_cache_options) do
       collection_works_query(collection).field_values(:fandom_ids)
     end
@@ -52,13 +52,13 @@ module SearchCounts
   ######################################################################
 
   def work_count_for_user(user)
-    Rails.cache.fetch(work_cache_key(user), dashboard_cache_options) do
+    Rails.cache.fetch(work_cache_key(user), dashboard_cache_options) do # i18n-locale-independent
       WorkQuery.new(user_ids: [user.id]).count
     end
   end
 
   def work_count_for_pseud(pseud)
-    Rails.cache.fetch(work_cache_key(pseud), dashboard_cache_options) do
+    Rails.cache.fetch(work_cache_key(pseud), dashboard_cache_options) do # i18n-locale-independent
       WorkQuery.new(pseud_ids: [pseud.id]).count
     end
   end
@@ -78,7 +78,7 @@ module SearchCounts
   def bookmark_count_for_user(user)
     show_private = User.current_user.is_a?(Admin) || user == User.current_user
 
-    Rails.cache.fetch(bookmark_cache_key(user, show_private), dashboard_cache_options) do
+    Rails.cache.fetch(bookmark_cache_key(user, show_private), dashboard_cache_options) do # i18n-locale-independent
       BookmarkQuery.new(user_ids: [user.id], show_private: show_private).count
     end
   end
@@ -86,7 +86,7 @@ module SearchCounts
   def bookmark_count_for_pseud(pseud)
     show_private = User.current_user.is_a?(Admin) || pseud.user == User.current_user
 
-    Rails.cache.fetch(bookmark_cache_key(pseud, show_private), dashboard_cache_options) do
+    Rails.cache.fetch(bookmark_cache_key(pseud, show_private), dashboard_cache_options) do # i18n-locale-independent
       BookmarkQuery.new(pseud_ids: [pseud.id], show_private: show_private).count
     end
   end

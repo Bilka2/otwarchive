@@ -105,7 +105,7 @@ class ChallengeSignupSummary
   def touch_cache
     data = cached_info.dup
     data[:time] = Time.now
-    Rails.cache.write(cache_key, data)
+    Rails.cache.write(cache_key, data) # TODO Bilka
   end
 
   private
@@ -117,13 +117,13 @@ class ChallengeSignupSummary
       time: Time.now
     }
 
-    Rails.cache.write(cache_key, data)
+    Rails.cache.write(cache_key, data) # TODO Bilka
   end
 
   # Retrieve the hash containing cached info: the value being cached (if it
   # exists), and the time that it was updated.
   def cached_info
-    Rails.cache.read(cache_key) || {}
+    Rails.cache.read(cache_key) || {} # TODO Bilka
   end
 
   # The key used to store info about the signup summary in memcached.

@@ -45,7 +45,7 @@ class AdminSetting < ApplicationRecord
   end
 
   def self.current
-    Rails.cache.fetch("admin_settings-v2", race_condition_ttl: 10.seconds) { AdminSetting.first } || OpenStruct.new(DEFAULT_SETTINGS)
+    Rails.cache.fetch("admin_settings-v2", race_condition_ttl: 10.seconds) { AdminSetting.first } || OpenStruct.new(DEFAULT_SETTINGS) # i18n-locale-independent
   end
 
   class << self
@@ -77,7 +77,7 @@ class AdminSetting < ApplicationRecord
     self.reload
 
     # However, we only cache it if the transaction is successful.
-    after_commit { Rails.cache.write("admin_settings-v2", self) }
+    after_commit { Rails.cache.write("admin_settings-v2", self) } # i18n-locale-independent
   end
 
   private

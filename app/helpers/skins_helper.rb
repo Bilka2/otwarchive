@@ -47,7 +47,7 @@ module SkinsHelper
     # We also include the default_skin_id in the version number so that we
     # regenerate the cache block when an admin updates the current default
     # skin.
-    Rails.cache.fetch(
+    Rails.cache.fetch( # i18n-locale-independent
       [:v1, :site_skin, skin.id, logged_in_as_admin?],
       version: [skin_cache_version(skin.id),
                 AdminSetting.default_skin_id,

@@ -196,7 +196,7 @@ public
     else
       # http://stackoverflow.com/questions/12891790/will-returning-a-nil-value-from-a-block-passed-to-rails-cache-fetch-clear-it
       # Basically we need to store a nil separately.
-      @admin_banner = Rails.cache.fetch("admin_banner") do
+      @admin_banner = Rails.cache.fetch("admin_banner") do # i18n-locale-independent
         banner = AdminBanner.where(active: true).last
         banner.nil? ? "" : banner
       end
@@ -347,7 +347,7 @@ public
     @current_user = current_user
     unless current_user.nil?
       @current_user_subscriptions_count, @current_user_visible_work_count, @current_user_bookmarks_count, @current_user_owned_collections_count, @current_user_challenge_signups_count, @current_user_offer_assignments, @current_user_unposted_works_size=
-             Rails.cache.fetch("user_menu_counts_#{current_user.id}",
+             Rails.cache.fetch("user_menu_counts_#{current_user.id}", # i18n-locale-independent
                                expires_in: 2.hours,
                                race_condition_ttl: 5) { "#{current_user.subscriptions.count}, #{current_user.visible_work_count}, #{current_user.bookmarks.count}, #{current_user.owned_collections.count}, #{current_user.challenge_signups.count}, #{current_user.offer_assignments.undefaulted.count + current_user.pinch_hit_assignments.undefaulted.count}, #{current_user.unposted_works.size}" }.split(",").map(&:to_i)
     end

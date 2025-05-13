@@ -87,7 +87,7 @@ module ApplicationHelper
       return byline_text(creation, only_path)
     end
 
-    Rails.cache.fetch("#{creation.cache_key}/byline-nonanon/#{only_path.to_s}") do
+    Rails.cache.fetch("#{creation.cache_key}/byline-nonanon/#{only_path.to_s}") do # i18n-locale-dependent
       byline_text(creation, only_path)
     end
   end
@@ -563,7 +563,7 @@ module ApplicationHelper
   def css_classes_for_creation_blurb(creation)
     return if creation.nil?
 
-    Rails.cache.fetch("#{creation.cache_key_with_version}/blurb_css_classes-v2") do
+    Rails.cache.fetch("#{creation.cache_key_with_version}/blurb_css_classes-v2") do # i18n-locale-independent
       creation_id = creation_id_for_css_classes(creation)
       creator_ids = creator_ids_for_css_classes(creation).join(" ")
       "blurb group #{creation_id} #{creator_ids}".strip

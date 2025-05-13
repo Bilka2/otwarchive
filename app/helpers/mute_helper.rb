@@ -17,7 +17,7 @@ module MuteHelper
   def mute_css
     return if current_user.nil?
 
-    Rails.cache.fetch(mute_css_key(current_user)) do
+    Rails.cache.fetch(mute_css_key(current_user)) do # i18n-locale-independent
       mute_css_uncached(current_user)
     end
   end

@@ -29,7 +29,7 @@ describe ZohoAuthClient do
 
       it "fetches a new access token from Zoho and caches it" do
         expect(ZohoAuthClient.new.access_token).to eq("1a2b3c")
-        expect(Rails.cache.read(ZohoAuthClient::ACCESS_TOKEN_CACHE_KEY)).to eq("1a2b3c")
+        expect(Rails.cache.read(ZohoAuthClient::ACCESS_TOKEN_CACHE_KEY)).to eq("1a2b3c") # i18n-locale-independent
 
         expected_query = {
           client_id: "111",
@@ -46,7 +46,7 @@ describe ZohoAuthClient do
 
     context "when a token is cached" do
       before do
-        Rails.cache.write(ZohoAuthClient::ACCESS_TOKEN_CACHE_KEY, "1a2b3c-cached")
+        Rails.cache.write(ZohoAuthClient::ACCESS_TOKEN_CACHE_KEY, "1a2b3c-cached") # i18n-locale-independent
       end
 
       it "returns the cached token without making any Zoho requests" do

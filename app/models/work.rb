@@ -326,11 +326,11 @@ class Work < ApplicationRecord
   end
 
   def self.work_blurb_version(id)
-    Rails.cache.fetch(Work.work_blurb_version_key(id), raw: true) { rand(1..1000) }
+    Rails.cache.fetch(Work.work_blurb_version_key(id), raw: true) { rand(1..1000) } # TODO Bilka
   end
 
   def self.expire_work_blurb_version(id)
-    Rails.cache.increment(Work.work_blurb_version_key(id))
+    Rails.cache.increment(Work.work_blurb_version_key(id)) # TODO Bilka
   end
 
   # When works are done being reindexed, expire the appropriate caches
@@ -388,11 +388,11 @@ class Work < ApplicationRecord
   end
 
   def self.find_by_url_generation
-    Rails.cache.fetch(Work.find_by_url_generation_key, raw: true) { rand(1..1000) }
+    Rails.cache.fetch(Work.find_by_url_generation_key, raw: true) { rand(1..1000) } # i18n-locale-independent
   end
 
   def self.flush_find_by_url_cache
-    Rails.cache.increment(Work.find_by_url_generation_key)
+    Rails.cache.increment(Work.find_by_url_generation_key) # i18n-locale-independent
   end
 
   def self.find_by_url_cache_key(url)
@@ -424,7 +424,7 @@ class Work < ApplicationRecord
   end
 
   def self.find_by_url(url)
-    Rails.cache.fetch(Work.find_by_url_cache_key(url)) do
+    Rails.cache.fetch(Work.find_by_url_cache_key(url)) do # i18n-locale-independent
       find_by_url_uncached(url)
     end
   end
@@ -750,7 +750,7 @@ class Work < ApplicationRecord
 
   # Get the total number of chapters for a work
   def number_of_chapters
-    Rails.cache.fetch(key_for_chapter_total_counting(self)) do
+    Rails.cache.fetch(key_for_chapter_total_counting(self)) do # i18n-locale-independent
       self.chapters.count
     end
   end
@@ -759,7 +759,7 @@ class Work < ApplicationRecord
   # Issue 1316: total number needs to reflect the actual number of chapters posted
   # rather than the total number of chapters indicated by user
   def number_of_posted_chapters
-    Rails.cache.fetch(key_for_chapter_posted_counting(self)) do
+    Rails.cache.fetch(key_for_chapter_posted_counting(self)) do # i18n-locale-independent
       self.chapters.posted.count
     end
   end
@@ -944,13 +944,13 @@ class Work < ApplicationRecord
   end
 
   def guest_kudos_count
-    Rails.cache.fetch "works/#{id}/guest_kudos_count-v2" do
+    Rails.cache.fetch "works/#{id}/guest_kudos_count-v2" do # i18n-locale-independent
       kudos.by_guest.count
     end
   end
 
   def all_kudos_count
-    Rails.cache.fetch "works/#{id}/kudos_count-v2" do
+    Rails.cache.fetch "works/#{id}/kudos_count-v2" do # i18n-locale-independent
       kudos.count
     end
   end

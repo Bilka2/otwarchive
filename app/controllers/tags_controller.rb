@@ -75,7 +75,7 @@ class TagsController < ApplicationController
       @bookmarks = @tag.bookmarks.visible.paginate(page: params[:page])
     end
     # cache the children, since it's a possibly massive query
-    @tag_children = Rails.cache.fetch "views/tags/#{@tag.cache_key}/children" do
+    @tag_children = Rails.cache.fetch "views/tags/#{@tag.cache_key}/children" do # i18n-locale-independent
       children = {}
       (@tag.child_types - %w(SubTag)).each do |child_type|
         tags = @tag.send(child_type.underscore.pluralize).order('taggings_count_cache DESC').limit(ArchiveConfig.TAG_LIST_LIMIT + 1)

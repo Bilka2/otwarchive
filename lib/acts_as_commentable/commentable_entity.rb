@@ -46,7 +46,7 @@ module ActsAsCommentable::CommentableEntity
   # calculating the count).
   def count_visible_comments
     @count_visible_comments ||=
-      Rails.cache.fetch(count_visible_comments_key,
+      Rails.cache.fetch(count_visible_comments_key, # i18n-locale-independent
                         expires_in: ArchiveConfig.SECONDS_UNTIL_COMMENT_COUNTS_EXPIRE.seconds,
                         race_condition_ttl: 10.seconds) do
         count_visible_comments_uncached
@@ -59,7 +59,7 @@ module ActsAsCommentable::CommentableEntity
 
   def expire_comments_count
     @count_visible_comments = nil
-    Rails.cache.delete(count_visible_comments_key)
+    Rails.cache.delete(count_visible_comments_key) # i18n-locale-independent
   end
 
   # Return the name of this commentable object

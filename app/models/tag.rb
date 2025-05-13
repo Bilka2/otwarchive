@@ -67,12 +67,12 @@ class Tag < ApplicationRecord
   def taggings_count=(value)
     expiry_time = Tag.taggings_count_expiry(value)
     # Only write to the cache if there are more than a number of uses.
-    Rails.cache.write(taggings_count_cache_key, value, race_condition_ttl: 10, expires_in: expiry_time.minutes) if value >= ArchiveConfig.TAGGINGS_COUNT_MIN_CACHE_COUNT
+    Rails.cache.write(taggings_count_cache_key, value, race_condition_ttl: 10, expires_in: expiry_time.minutes) if value >= ArchiveConfig.TAGGINGS_COUNT_MIN_CACHE_COUNT # TODO Bilka
     write_taggings_to_redis(value)
   end
 
   def taggings_count
-    cache_read = Rails.cache.read(taggings_count_cache_key)
+    cache_read = Rails.cache.read(taggings_count_cache_key) # TODO Bilka
     return cache_read unless cache_read.nil?
     real_value = taggings.count
     self.taggings_count = real_value
@@ -80,7 +80,7 @@ class Tag < ApplicationRecord
   end
 
   def update_tag_cache
-    cache_read = Rails.cache.read(taggings_count_cache_key)
+    cache_read = Rails.cache.read(taggings_count_cache_key) # TODO Bilka
     taggings_count if cache_read.nil? || (cache_read < ArchiveConfig.TAGGINGS_COUNT_MIN_CACHE_COUNT)
   end
 
@@ -1095,7 +1095,7 @@ class Tag < ApplicationRecord
 
   def unwrangled_tag_count(tag_type)
     key = "unwrangled_#{tag_type}_#{self.id}_#{self.updated_at}"
-    Rails.cache.fetch(key, expires_in: 4.hours) do
+    Rails.cache.fetch(key, expires_in: 4.hours) do # i18n-locale-independent
       unwrangled_query(tag_type).count
     end
   end
