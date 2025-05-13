@@ -152,9 +152,7 @@ class Series < ApplicationRecord
   end
 
   def expire_byline_cache
-    [true, false].each do |only_path|
-      Rails.cache.delete("#{cache_key}/byline-nonanon/#{only_path}")
-    end
+    expire_byline_text_cache(cache_key)
   end
 
   # Change the positions of the serial works in the series
