@@ -94,11 +94,13 @@ module ApplicationHelper
     if creation.respond_to?(:author)
       creation.author
     else
+      # Update Series#expire_byline_cache when changing cache keys here
       pseuds = Rails.cache.fetch([creation.cache_key, "byline", "pseuds"]) do
         pseuds = @preview_mode ? creation.pseuds_after_saving : creation.pseuds.to_a
         pseuds.flatten.uniq.sort
       end
 
+      # Update Series#expire_byline_cache when changing cache keys here
       archivists = Rails.cache.fetch([creation.cache_key, "byline", "archivists"]) do
         archivists = Hash.new []
         if creation.is_a?(Work)
@@ -122,11 +124,6 @@ module ApplicationHelper
         end
       }.join(', ').html_safe
     end
-  end
-
-  def expire_byline_text_cache(cache_key)
-    Rails.cache.delete([cache_key, "byline", "pseuds"])
-    Rails.cache.delete([cache_key, "byline", "archivists"])
   end
 
   def pseud_link(pseud, only_path = true)

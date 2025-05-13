@@ -152,7 +152,8 @@ class Series < ApplicationRecord
   end
 
   def expire_byline_cache
-    expire_byline_text_cache(cache_key)
+    Rails.cache.delete([cache_key, "byline", "pseuds"])
+    Rails.cache.delete([cache_key, "byline", "archivists"])
   end
 
   # Change the positions of the serial works in the series
