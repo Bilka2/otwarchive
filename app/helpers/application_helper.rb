@@ -87,25 +87,28 @@ module ApplicationHelper
       return byline_text(creation, only_path)
     end
 
-    Rails.cache.fetch("#{creation.cache_key}/byline-nonanon/#{only_path.to_s}") do
-      byline_text(creation, only_path)
-    end
+    byline_text(creation, only_path)
   end
 
   def byline_text(creation, only_path, text_only = false)
     if creation.respond_to?(:author)
       creation.author
     else
-      pseuds = @preview_mode ? creation.pseuds_after_saving : creation.pseuds.to_a
-      pseuds = pseuds.flatten.uniq.sort
+      pseuds = Rails.cache.fetch([creation.cache_key, "byline", "pseuds"]) do
+        pseuds = @preview_mode ? creation.pseuds_after_saving : creation.pseuds.to_a
+        pseuds.flatten.uniq.sort
+      end
 
-      archivists = Hash.new []
-      if creation.is_a?(Work)
-        external_creatorships = creation.external_creatorships.select { |ec| !ec.claimed? }
-        external_creatorships.each do |ec|
-          archivist_pseud = pseuds.select { |p| ec.archivist.pseuds.include?(p) }.first
-          archivists[archivist_pseud] += [ec.author_name]
+      archivists = Rails.cache.fetch([creation.cache_key, "byline", "archivists"]) do
+        archivists = Hash.new []
+        if creation.is_a?(Work)
+          external_creatorships = creation.external_creatorships.select { |ec| !ec.claimed? }
+          external_creatorships.each do |ec|
+            archivist_pseud = pseuds.select { |p| ec.archivist.pseuds.include?(p) }.first
+            archivists[archivist_pseud] += [ec.author_name]
+          end
         end
+        archivists
       end
 
       pseuds.map { |pseud|
@@ -119,6 +122,11 @@ module ApplicationHelper
         end
       }.join(', ').html_safe
     end
+  end
+
+  def expire_byline_text_cache(cache_key)
+    Rails.cache.delete([cache_key, "byline", "pseuds"])
+    Rails.cache.delete([cache_key, "byline", "archivists"])
   end
 
   def pseud_link(pseud, only_path = true)
