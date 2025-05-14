@@ -110,7 +110,7 @@ module ApplicationHelper
             archivists[archivist_pseud] += [ec.author_name]
           end
         end
-        archivists
+        archivists || ""
       end
 
       pseuds.map { |pseud|
