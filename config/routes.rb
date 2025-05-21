@@ -218,6 +218,13 @@ Rails.application.routes.draw do
         post :update_next_of_kin
       end
     end
+    resources :action_users, only: [] do
+      collection do
+        get :mass_setup
+        post :mass_action
+        post :mass_create
+      end
+    end
     resources :invitations, controller: 'admin_invitations' do
       collection do
         post :invite_from_queue

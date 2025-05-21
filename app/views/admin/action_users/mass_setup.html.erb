@@ -1,0 +1,22 @@
+<h2 class="heading"><%= t(".page_heading") %></h2>
+
+<%= form_with url: mass_action_admin_action_users_path, method: :post do |f| %>
+  <fieldset>
+    <p class="notice"><%= t(".notice") %></p>
+    <dl>
+      <dt><%= f.label :urls, t(".urls.label") %></dt>
+      <dd>
+        <%= f.text_area :urls, "aria-describedby": "urls-field-description" %>
+        <p class="footnote" id="urls-field-description"><%= t(".urls.description") %></p>
+      </dd>
+      <dt><%= f.label :users, t(".users.label") %></dt>
+      <dd>
+        <%= f.text_area :users, "aria-describedby": "users-field-description" %>
+        <p class="footnote" id="users-field-description"><%= t(".users.description") %></p>
+      </dd>
+    </dl>
+    <p class="actions">
+      <%= f.submit t(".submit") %>
+    </p>
+  </fieldset>
+<% end %>

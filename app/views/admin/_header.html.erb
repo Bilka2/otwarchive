@@ -6,6 +6,9 @@
         <ul class="menu">
           <li><%= link_to t(".nav.users.search"), admin_users_path %></li>
           <li><%= link_to t(".nav.users.email_search"), bulk_search_admin_users_path %></li>
+          <% if policy(AdminActionUsers).mass_setup? %>
+            <li><%= link_to t(".nav.users.mass_action_setup"), mass_setup_admin_action_users_path %></li>
+          <% end %>
         </ul>
       </li>
     <% end %>

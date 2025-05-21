@@ -75,6 +75,31 @@ en:
         tos: Terms of Service
         violation_html: You have encountered content on AO3 that violates the %{content_policy_link} or other parts of the %{tos_link}.
   admin:
+    action_users:
+      mass_action:
+        user:
+          heading_html: 'User: %{admin_user_link} (%{id})'
+          action:
+            ban: Suspend permanently (ban user)
+            label: Action on %{login}
+            note: Record note
+            spamban: 'Spammer: ban and delete all creations'
+            suspend: 'Suspend: enter a whole number of days'
+            unban: Lift permanent suspension, effective immediately.
+            unsuspend: Lift temporary suspension, effective immediately.
+            warn: Record warning
+          reason: Reason for actioning %{login}
+        page_heading: 'Policy & Abuse: Action Users'
+      mass_setup:
+        page_heading: 'Policy & Abuse: Mass Action Setup'
+        urls:
+          label: Works to hide
+          description: List the full URLs of all works you wish to hide, separated by line breaks.
+        submit: Proceed to Action Users form
+        notice: All works and users being actioned must belong to the same ticket.
+        users:
+          label: Users to action
+          description: List the current usernames (not pseuds) of users you wish to action, separated by line breaks. You don't need to list the creators of the works you are hiding, as they will be included automatically.
     activities:
       index:
         activities_table:
@@ -342,6 +367,7 @@ en:
         users:
           email_search: Bulk Email Search
           manage: Manage Users
+          mass_action_setup: Mass Action Setup
           search: Find Users
         wrangling: Tag Wrangling
     passwords:
