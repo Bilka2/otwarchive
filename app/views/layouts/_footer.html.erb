@@ -3,7 +3,7 @@
   <h3 class="landmark heading"><%= t(".landmark") %></h3>
   <ul class="navigation actions" role="navigation">
     <% if logged_in? || logged_in_as_admin? %>
-      <% cache(skin_chooser_key, skip_digest: true) do %><%# i18n-locale-independent %>
+      <% cache(skin_chooser_key, skip_digest: true) do %><%# i18n-locale-dependent %>
         <% unless Skin.in_chooser.empty? %>
           <li class="module group">
             <h4 class="heading"><%= t(".customize.header") %></h4>

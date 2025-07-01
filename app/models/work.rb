@@ -326,11 +326,11 @@ class Work < ApplicationRecord
   end
 
   def self.work_blurb_version(id)
-    Rails.cache.fetch(Work.work_blurb_version_key(id), raw: true) { rand(1..1000) } # TODO Bilka
+    Rails.cache.fetch(Work.work_blurb_version_key(id), raw: true) { rand(1..1000) } # i18n-locale-independent
   end
 
   def self.expire_work_blurb_version(id)
-    Rails.cache.increment(Work.work_blurb_version_key(id)) # TODO Bilka
+    Rails.cache.increment(Work.work_blurb_version_key(id)) # i18n-locale-independent
   end
 
   # When works are done being reindexed, expire the appropriate caches

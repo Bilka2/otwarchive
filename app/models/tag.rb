@@ -67,12 +67,12 @@ class Tag < ApplicationRecord
   def taggings_count=(value)
     expiry_time = Tag.taggings_count_expiry(value)
     # Only write to the cache if there are more than a number of uses.
-    Rails.cache.write(taggings_count_cache_key, value, race_condition_ttl: 10, expires_in: expiry_time.minutes) if value >= ArchiveConfig.TAGGINGS_COUNT_MIN_CACHE_COUNT # TODO Bilka
+    Rails.cache.write(taggings_count_cache_key, value, race_condition_ttl: 10, expires_in: expiry_time.minutes) if value >= ArchiveConfig.TAGGINGS_COUNT_MIN_CACHE_COUNT # i18n-locale-independent
     write_taggings_to_redis(value)
   end
 
   def taggings_count
-    cache_read = Rails.cache.read(taggings_count_cache_key) # TODO Bilka
+    cache_read = Rails.cache.read(taggings_count_cache_key) # i18n-locale-independent
     return cache_read unless cache_read.nil?
     real_value = taggings.count
     self.taggings_count = real_value
@@ -80,7 +80,7 @@ class Tag < ApplicationRecord
   end
 
   def update_tag_cache
-    cache_read = Rails.cache.read(taggings_count_cache_key) # TODO Bilka
+    cache_read = Rails.cache.read(taggings_count_cache_key) # i18n-locale-independent
     taggings_count if cache_read.nil? || (cache_read < ArchiveConfig.TAGGINGS_COUNT_MIN_CACHE_COUNT)
   end
 
