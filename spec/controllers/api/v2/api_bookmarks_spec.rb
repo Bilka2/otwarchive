@@ -21,7 +21,7 @@ describe "API v2 BookmarksController", type: :request, bookmark_search: true do
                rec: "0" }
 
   before do
-    WebMock.stub_request(:any, /example.com/)
+    WebMock.stub_request(:any, "http://example.com")
   end
 
   after do
