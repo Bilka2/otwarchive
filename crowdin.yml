@@ -1,16 +1,16 @@
 base_path: /config/locales
 files:
   - source: /controllers/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
   - source: /devise/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
   - source: /helpers/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
   - source: /mailers/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
   - source: /models/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
   - source: /validators/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
   - source: /views/en.yml
-    translation: /phrase-exports/%locale%.yml
+    translation: /phrase-exports/%two_letters_code%.yml
