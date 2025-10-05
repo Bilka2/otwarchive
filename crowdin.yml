@@ -1,0 +1,3 @@
+files:
+  - source: ./config/locales/**/en.yml
+    translation: ./config/locales/phrase-exports/%two_letters_code%.yml
