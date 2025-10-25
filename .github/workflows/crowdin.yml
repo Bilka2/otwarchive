@@ -14,13 +14,12 @@ jobs:
         uses: crowdin/github-action@v2
         with:
           upload_sources: true
-          upload_translations: true
-          auto_approve_imported: true
+          upload_translations: false
           download_translations: true
+          push_sources: false
+          push_translations: true
           skip_untranslated_strings: true
           export_only_approved: true
-          push_sources: false
-          push_translations: false
           localization_branch_name: phrase-translations
           create_pull_request: true
           pull_request_title: 'New Crowdin Translations'
