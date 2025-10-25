@@ -3,17 +3,5 @@ api_token_env: CROWDIN_PERSONAL_TOKEN
 preserve_hierarchy: true
 base_path: config/locales
 files:
-  - source: /controllers/en.yml
-    translation: /phrase-exports/%two_letters_code%.yml
-  - source: /devise/en.yml
-    translation: /phrase-exports/%two_letters_code%.yml
-  - source: /helpers/en.yml
-    translation: /phrase-exports/%two_letters_code%.yml
-  - source: /mailers/en.yml
-    translation: /phrase-exports/%two_letters_code%.yml
-  - source: /models/en.yml
-    translation: /phrase-exports/%two_letters_code%.yml
-  - source: /validators/en.yml
-    translation: /phrase-exports/%two_letters_code%.yml
-  - source: /views/en.yml
+  - source: /**/en.yml
     translation: /phrase-exports/%two_letters_code%.yml
