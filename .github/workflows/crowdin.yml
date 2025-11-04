@@ -15,7 +15,7 @@ jobs:
         with:
           upload_sources: true
           upload_translations: false
-          download_translations: false
+          download_translations: true
           push_sources: false
           push_translations: true
           skip_untranslated_strings: true
