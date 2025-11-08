@@ -4,4 +4,4 @@ preserve_hierarchy: true
 base_path: config/locales
 files:
   - source: /**/en.yml
-    translation: /crowdin-exports/%two_letters_code%.yml
+    translation: /crowdin-exports/%original_path%/%two_letters_code%.yml
