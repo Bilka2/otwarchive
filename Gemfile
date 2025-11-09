@@ -143,7 +143,7 @@ group :test, :development do
   gem 'whiny_validation'
   gem "factory_bot_rails"
   gem 'minitest'
-  gem "i18n-tasks", require: false
+  gem "i18n-tasks", require: false, git: 'https://github.com/glebm/i18n-tasks'
 end
 
 group :development do
