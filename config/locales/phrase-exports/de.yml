@@ -1,5 +1,11 @@
 ---
 de:
+  help:
+    preferences_locale:
+      locale:
+        description: Mit dieser Einstellung kannst Du die Sprache festlegen, in der Du E-Mails von AO3 erhalten möchtest. Die Vorlagen für diese E-Mails werden derzeit von unseren Ehrenamtlichen aktualisiert und übersetzt. Dies ist ein laufender Prozess; derzeit sind noch nicht alle E-Mails in anderen Sprachen als Englisch verfügbar. Wenn die Vorlage für eine E-Mail noch nicht in Deine Sprache übersetzt wurde, wird sie auf Englisch versendet.
+        header: Bevorzugte Sprache festlegen
+      page_heading: Spracheinstellung
   activerecord:
     attributes:
       archive_warning:

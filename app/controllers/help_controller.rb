@@ -1,5 +1,5 @@
 class HelpController < ApplicationController
-  before_action :users_only, only: [:first_login]
+  before_action :users_only, only: [:first_login, :preferences_locale]
   layout false
 
   def first_login
