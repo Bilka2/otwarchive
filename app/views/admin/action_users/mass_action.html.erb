@@ -1,0 +1,89 @@
+<h2 class="heading"><%= t(".page_heading") %></h2>
+
+<%= form_with url: mass_create_admin_action_users_path, method: :post do |f| %>
+  <p class="required notice">* Required information</p>
+
+  <fieldset>
+    <legend>Ticket ID</legend>
+    <dl>
+      <dt class="required">Ticket ID*</dt>
+      <dd class="required">
+        <input text="text" aria-describedby="main-ticket-description">
+        <p class="footnote" id="main-ticket-description">This is the main ticket with the original complaint.</p>
+      </dd>
+    </dl>
+  </fieldset>
+
+  <h3 class="heading">Hide Works</h3>
+  <fieldset>
+    <dl>
+      <dt>Work(s) to be hidden:</dt>
+      <dd>
+        <p><a href="/works/123456789">This is a nonfanwork</a>, by UserA</p>
+        <p><a href="/works/987654321">This is also a nonfanwork</a>, by UserA, UserB</p>
+      </dd>
+    </dl>
+  </fieldset>
+
+  <% @user_managers.each do |user_manager| %>
+    <% user = user_manager.user %>
+    <h3 class="heading"><%= t(".user.heading_html", id: user.id, admin_user_link: link_to(user.login, admin_user_path(user))) %></h3>
+    <fieldset> <%# TODO Bilka enforce required fields %>
+      <%= hidden_field_tag "user[#{user.id}]{}", "" %>
+      <dl>
+        <dt class="required"><%= t(".user.action.label", login: user.login) + "*" %></dt>
+        <dd class="required">
+          <fieldset>
+            <% action_label = "user[#{user.id}]admin_action" %>
+            <legend><%= t(".user.action.label", login: user.login) %></legend>
+            <ul>
+              <li>
+                <%= radio_button_tag action_label, "note", user_manager.admin_action == "note" %>
+                <%= label_tag "#{action_label}_note", t(".user.action.note") %>
+              </li>
+              <li>
+                <%= radio_button_tag action_label, "warn", user_manager.admin_action == "warn" %>
+                <%= label_tag "#{action_label}_warn", t(".user.action.warn") %>
+              </li>
+              <li>
+                <% if user.suspended? %>
+                  <%= radio_button_tag action_label, "unsuspend", user_manager.admin_action == "unsuspend" %>
+                  <%= label_tag "#{action_label}_unsuspend", t(".user.action.unsuspend") %>
+                <% else %>
+                  <%= radio_button_tag action_label, "suspend", user_manager.admin_action == "suspend", disabled: user.banned? %>
+                  <%= label_tag "#{action_label}_suspend", t(".user.action.suspend") %>
+                  <%= text_field_tag "user[#{user.id}]suspend_days", user_manager.suspend_days, class: "number", size: 2, disabled: user.banned? %>
+                  <%= live_validation_for_field("user[#{user.id}]suspend_days", presence: false, numericality: true) %>
+                <% end %>
+              </li>
+              <li>
+                <% if user.banned? %>
+                  <%= radio_button_tag action_label, "unban", user_manager.admin_action == "unban" %>
+                  <%= label_tag "#{action_label}_unban", t(".user.action.unban") %>
+                <% else %>
+                  <%= radio_button_tag action_label, "ban", user_manager.admin_action == "ban" %>
+                  <%= label_tag "#{action_label}_ban", t(".user.action.ban") %>
+                <% end %>
+              </li>
+              <li>
+                <%= radio_button_tag action_label, "spamban", user_manager.admin_action == "spamban" %>
+                <%= label_tag "#{action_label}_spamban", t(".user.action.spamban") %>
+              </li>
+            </ul>
+          </fieldset>
+        </dd>
+        <dt class="required"><%= label_tag "user[#{user.id}]admin_note", t(".user.reason", login: user.login) + "*" %></dt>
+        <dd class="required"><%= text_field_tag "user[#{user.id}]admin_note", user_manager.admin_note %></dd> <%# TODO Bilka this gets filled with Banned for spam for errors on spambans...  %>
+      </dl>
+    </fieldset>
+  <% end %>
+
+  <fieldset>
+    <legend>Confirm and Submit</legend>
+    <p class="submit">
+      <input type="submit" name="preview" value="Preview emails" />
+      <%= submit_tag t(".take_action"), name: "take_action_button" %>
+    </p>
+  </fieldset>
+
+<% end %>

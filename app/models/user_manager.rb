@@ -4,7 +4,7 @@ class UserManager
               :user,
               :admin_note,
               :admin_action,
-              :suspension_length,
+              :suspend_days,
               :errors,
               :successes
 
@@ -15,17 +15,20 @@ class UserManager
     @user = user
     @admin_note = params[:admin_note]
     @admin_action = params[:admin_action]
-    @suspension_length = params[:suspend_days]
+    @suspend_days = params[:suspend_days]
     @errors = []
     @successes = []
   end
 
-  def save
+  def valid?
     validate_user_and_admin &&
       validate_orphan_account &&
       validate_admin_note &&
-      validate_suspension &&
-      save_admin_action
+      validate_suspension
+  end
+
+  def save
+    valid? && save_admin_action # TODO Bilka optionally skip validation via arg similar to active record validate: false
   end
 
   def success_message
@@ -71,7 +74,7 @@ class UserManager
   end
 
   def validate_suspension
-    if admin_action == "suspend" && suspension_length.blank?
+    if admin_action == "suspend" && suspend_days.blank?
       errors << "Please enter the number of days for which the user should be suspended."
       false
     else
@@ -97,7 +100,7 @@ class UserManager
 
   def suspend_user
     user.suspended = true
-    user.suspended_until = suspension_length.to_i.days.from_now
+    user.suspended_until = suspend_days.to_i.days.from_now
     user.save!
     log_action(ArchiveConfig.ACTION_SUSPEND, enddate: user.suspended_until)
     successes << "User has been temporarily suspended."
