@@ -27,7 +27,7 @@
 
   <% @user_managers.each do |user_manager| %>
     <% user = user_manager.user %>
-    <h3 class="heading"><%= t(".user.heading_html", id: user.id, admin_user_link: link_to(user.login, admin_user_path(user))) %></h3>
+    <h3 class="heading" id=<%= user.id %>><%= t(".user.heading_html", id: user.id, admin_user_link: link_to(user.login, admin_user_path(user))) %></h3><%# TODO Bilka id for anchor is new %>
     <fieldset> <%# TODO Bilka enforce required fields %>
       <%= hidden_field_tag "user[#{user.id}]{}", "" %>
       <dl>

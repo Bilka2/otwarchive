@@ -37,7 +37,11 @@ class Admin::ActionUsersController < Admin::BaseController
         flash[:notice] = t(".success")
         redirect_to mass_setup_admin_action_users_path
       else
-        flash.now[:error] = errors.join(" ") # TODO Bilka is it correct that we abort saving all if any errors?, i18n? Showing which message means which user?
+        # TODO Bilka this is a hack
+        output = @user_managers.map do |user_manager|
+          helpers.tag.p(helpers.link_to("#{user_manager.user.login} (#{user_manager.user.id})", anchor: user_manager.user.id) + ": " + user_manager.error_message) if user_manager.error_message
+        end.compact
+        flash.now[:error] = output.join("") # TODO Bilka is it correct that we abort saving all if any errors?, i18n? Showing which message means which user?
         render :mass_action
       end
     end

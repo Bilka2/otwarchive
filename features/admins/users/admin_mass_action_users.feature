@@ -37,3 +37,41 @@ Feature: Mass admin action users
     When I go to the user administration page for "user2"
     Then I should see "Suspended Permanently"
       And I should see "This user is more suspicious."
+
+  Scenario: Filled out options are remembered through errors
+    Given the following activated users exist
+      | login | id |
+      | user1 | 1 |
+      | user2 | 2 |
+      | user3 | 3 |
+      | user4 | 4 |
+      | user5 | 5 |
+    When I follow "Mass Action Setup"
+    Then I should see "Policy & Abuse: Mass Action Setup"
+    When I fill in "Users to action" with
+      """
+      user2
+      user1
+      user3
+      user4
+      user5
+      """
+      And I press "Proceed to Action Users form"
+    Then I should see "Policy & Abuse: Action Users"
+    When I choose "user_1admin_action_note"
+      And I choose "user_2admin_action_warn"
+      And I choose "user_3admin_action_suspend"
+      And I fill in "Reason for actioning user3" with "This user is suspicious."
+      And I choose "user_4admin_action_ban"
+      And I choose "user_5admin_action_spamban"
+    When I press "Take action and hide work(s)"
+    Then I should see "Policy & Abuse: Action Users"
+      # TODO Bilka error message prefix and formatting here is new
+      And I should see "user1 (1): You must include notes in order to perform this action."
+      And I should see "user3 (3): Please enter the number of days for which the user should be suspended."
+      And the "user_1admin_action_note" checkbox should be checked
+      And the "user_2admin_action_warn" checkbox should be checked
+      And the "user_3admin_action_suspend" checkbox should be checked
+      And the field labeled "Reason for actioning user3" should contain "This user is suspicious."
+      And the "user_4admin_action_ban" checkbox should be checked
+      And the "user_5admin_action_spamban" checkbox should be checked
