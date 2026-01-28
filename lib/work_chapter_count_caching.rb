@@ -9,7 +9,7 @@ module WorkChapterCountCaching
   end
 
   def invalidate_work_chapter_count(work)
-    Rails.cache.delete(key_for_chapter_total_counting(work))
-    Rails.cache.delete(key_for_chapter_posted_counting(work))
+    Rails.cache.delete(key_for_chapter_total_counting(work)) # i18n-locale-independent
+    Rails.cache.delete(key_for_chapter_posted_counting(work)) # i18n-locale-independent
   end
 end

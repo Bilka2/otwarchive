@@ -4,12 +4,12 @@ module BookmarkCountCaching
   end
 
   def public_bookmarks_count
-    Rails.cache.fetch(self.key_for_public_bookmarks_count) do
+    Rails.cache.fetch(self.key_for_public_bookmarks_count) do # i18n-locale-independent
       self.bookmarks.is_public.count
     end
   end
 
   def invalidate_public_bookmarks_count
-    Rails.cache.delete(self.key_for_public_bookmarks_count)
+    Rails.cache.delete(self.key_for_public_bookmarks_count) # i18n-locale-independent
   end
 end

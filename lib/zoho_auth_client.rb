@@ -17,7 +17,7 @@ class ZohoAuthClient
   ].join(",").freeze
 
   def access_token
-    if (cached_token = Rails.cache.read(ACCESS_TOKEN_CACHE_KEY)).present?
+    if (cached_token = Rails.cache.read(ACCESS_TOKEN_CACHE_KEY)).present? # i18n-locale-independent
       return cached_token
     end
 
@@ -27,7 +27,7 @@ class ZohoAuthClient
     if (expires_in = response["expires_in_sec"]).present?
       # We don't want the token to expire while we're in the middle of a sequence
       # of requests, so we take the stated expiration time and subtract a little.
-      Rails.cache.write(ACCESS_TOKEN_CACHE_KEY, access_token,
+      Rails.cache.write(ACCESS_TOKEN_CACHE_KEY, access_token, # i18n-locale-independent
                         expires_in: expires_in - 1.minute)
     end
 

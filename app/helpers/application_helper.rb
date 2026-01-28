@@ -104,7 +104,7 @@ module ApplicationHelper
 
   def byline_text(creation, only_path, text_only: false)
     # Update Series#expire_byline_cache and Chapter#expire_byline_cache when changing cache key here
-    creators = Rails.cache.fetch(["byline_data", creation.cache_key]) { byline_data(creation) }
+    creators = Rails.cache.fetch(["byline_data", creation.cache_key]) { byline_data(creation) } # i18n-locale-independent
     byline_text_internal(creators, only_path, text_only)
   end
 
@@ -600,7 +600,7 @@ module ApplicationHelper
   def css_classes_for_creation_blurb(creation)
     return if creation.nil?
 
-    Rails.cache.fetch("#{creation.cache_key_with_version}/blurb_css_classes-v2") do
+    Rails.cache.fetch("#{creation.cache_key_with_version}/blurb_css_classes-v2") do # i18n-locale-independent
       creation_id = creation_id_for_css_classes(creation)
       creator_ids = creator_ids_for_css_classes(creation).join(" ")
       "blurb group #{creation_id} #{creator_ids}".strip

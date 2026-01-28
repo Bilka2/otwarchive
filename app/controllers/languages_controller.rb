@@ -1,7 +1,7 @@
 class LanguagesController < ApplicationController
   def index
     @languages = Language.default_order
-    @works_counts = Rails.cache.fetch("/v1/languages/work_counts/#{current_user.present?}", expires_in: 1.day) do
+    @works_counts = Rails.cache.fetch("/v1/languages/work_counts/#{current_user.present?}", expires_in: 1.day) do # i18n-locale-independent
       WorkQuery.new.works_per_language(@languages.count)
     end
   end

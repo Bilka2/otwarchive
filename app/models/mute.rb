@@ -25,7 +25,7 @@ class Mute < ApplicationRecord
   after_create :update_cache
   after_destroy :update_cache
   def update_cache
-    Rails.cache.write(mute_css_key(muter), mute_css_uncached(muter))
+    Rails.cache.write(mute_css_key(muter), mute_css_uncached(muter)) # i18n-locale-independent
   end
 
   def muted_byline=(byline)

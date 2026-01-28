@@ -18,7 +18,7 @@
     <% end %>
 
     <% unless @seen[this_work.id] %>
-      <% cache(["subscription-email-meta-html", I18n.locale.to_s, this_work]) do %>
+      <% cache(["subscription-email-meta-html", I18n.locale.to_s, this_work]) do %><%# i18n-locale-independent %>
         <p><%= render "work_info", work: this_work, suppress_summary: true %></p>
       <% end %>
 

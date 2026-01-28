@@ -7,7 +7,7 @@
 <% # cache key for all of the sets' tags, which expires when the number of tags changes or when the most recent updated_at changes %>
 <% tags_cache_key = @tags.cache_key %>
 
-<% cache("tagsets_#{ids}_#{newest_updated_at}_#{tags_cache_key}", skip_digest: true) do %>
+<% cache("tagsets_#{ids}_#{newest_updated_at}_#{tags_cache_key}", skip_digest: true) do %><%# i18n-locale-dependent %>
   <h2 class="heading">
     <%= ts("%{tag_type} Options From", tag_type: tag_type_label_name(@tag_type)) %>:
     <%= to_sentence(@tag_sets.map { |ts| link_to(ts.title, tag_set_path(ts)) }) %>
