@@ -1,4 +1,21 @@
 GIT
+  remote: https://github.com/glebm/i18n-tasks
+  revision: b91ab58d7c373f99240ab47572a345cdfe8959e1
+  specs:
+    i18n-tasks (1.1.2)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 3.0.0)
+      i18n
+      parser (>= 3.2.2.1)
+      prism
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.8, >= 1.8.1)
+      terminal-table (>= 1.5.1)
+
+GIT
   remote: https://github.com/otwcode/devise
   revision: fade89f61c64e766d87f24cfcb980ee533a5d5f2
   ref: fade89f
@@ -154,7 +171,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.3.1)
+    bigdecimal (4.0.1)
     brakeman (7.0.2)
       racc
     builder (3.3.0)
@@ -192,8 +209,8 @@ GEM
     chunky_png (1.4.0)
     climate_control (1.2.0)
     coderay (1.1.3)
-    concurrent-ruby (1.3.5)
-    connection_pool (2.5.5)
+    concurrent-ruby (1.3.6)
+    connection_pool (3.0.2)
     crack (1.0.0)
       bigdecimal
       rexml
@@ -241,7 +258,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.4.1)
+    date (3.5.1)
     departure (8.0.0)
       activerecord (>= 7.2.0)
       mysql2 (>= 0.4.0, < 0.6.0)
@@ -274,7 +291,7 @@ GEM
     email_spec (1.6.0)
       launchy (~> 2.1)
       mail (~> 2.2)
-    erb (5.1.1)
+    erb (6.0.2)
     erb_lint (0.4.0)
       activesupport
       better_html (>= 2.0.1)
@@ -326,25 +343,15 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.7)
+    i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.0.15)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      erubi
-      highline (>= 2.0.0)
-      i18n
-      parser (>= 3.2.2.1)
-      rails-i18n
-      rainbow (>= 2.2.2, < 4.0)
-      ruby-progressbar (~> 1.8, >= 1.8.1)
-      terminal-table (>= 1.5.1)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    io-console (0.8.1)
-    irb (1.15.2)
+    io-console (0.8.2)
+    irb (1.17.0)
       pp (>= 0.6.0)
+      prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
@@ -358,7 +365,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.24.1)
+    loofah (2.25.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -388,7 +395,9 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.27.0)
+    minitest (6.0.2)
+      drb (~> 2.0)
+      prism (~> 1.5)
     mono_logger (1.1.2)
     multi_json (1.19.1)
     multi_test (1.1.0)
@@ -401,8 +410,8 @@ GEM
     net-http (0.9.1)
       uri (>= 0.11.1)
     net-http-digest_auth (1.4.1)
-    net-http-persistent (4.0.2)
-      connection_pool (~> 2.2)
+    net-http-persistent (4.0.8)
+      connection_pool (>= 2.2.4, < 4)
     net-imap (0.5.9)
       date
       net-protocol
@@ -429,7 +438,7 @@ GEM
     ostruct (0.6.3)
     pagy (9.3.3)
     parallel (1.25.1)
-    parser (3.3.8.0)
+    parser (3.3.10.2)
       ast (~> 2.4.1)
       racc
     permit_yo (2.1.3)
@@ -446,13 +455,14 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
+    prism (1.9.0)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     pry-byebug (3.11.0)
       byebug (~> 12.0)
       pry (>= 0.13, < 0.16)
-    psych (5.2.6)
+    psych (5.3.1)
       date
       stringio
     public_suffix (6.0.2)
@@ -505,8 +515,8 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.6.2)
-      loofah (~> 2.21)
+    rails-html-sanitizer (1.7.0)
+      loofah (~> 2.25)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     railties (8.0.4)
       actionpack (= 8.0.4)
@@ -519,8 +529,8 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     raindrops (0.20.1)
-    rake (13.3.0)
-    rdoc (6.15.0)
+    rake (13.3.1)
+    rdoc (7.2.0)
       erb
       psych (>= 4.0.0)
       tsort
@@ -528,7 +538,7 @@ GEM
     redis-namespace (1.11.0)
       redis (>= 4)
     regexp_parser (2.10.0)
-    reline (0.6.2)
+    reline (0.6.3)
       io-console (~> 0.5)
     request_store (1.6.0)
       rack (>= 1.4)
@@ -642,7 +652,7 @@ GEM
       rack (> 1, < 3)
     stackprof (0.2.27)
     stringex (2.8.6)
-    stringio (3.1.7)
+    stringio (3.2.0)
     sys-uname (1.3.1)
       ffi (~> 1.1)
     terminal-table (4.0.0)
@@ -651,7 +661,7 @@ GEM
       climate_control
     test-unit (3.6.2)
       power_assert
-    thor (1.4.0)
+    thor (1.5.0)
     tilt (2.6.1)
     timecop (0.9.10)
     timeliness (0.4.5)
@@ -676,7 +686,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webrick (1.9.1)
+    webrick (1.9.2)
     webrobots (0.1.2)
     websocket (1.2.11)
     websocket-driver (0.8.0)
@@ -692,7 +702,7 @@ GEM
     will_paginate (4.0.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.3)
+    zeitwerk (2.7.5)
 
 PLATFORMS
   ruby
@@ -743,7 +753,7 @@ DEPENDENCIES
   google_visualr!
   htmlentities
   httparty
-  i18n-tasks
+  i18n-tasks!
   image_processing (~> 1.12)
   kgio (= 2.10.0)
   launchy
