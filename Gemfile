@@ -6,7 +6,7 @@ gem 'test-unit', '~> 3.2'
 
 gem 'bundler'
 
-gem "rails", "~> 8.1.0"
+gem "rails", git: "https://github.com/Edilbek/rails", ref: "aac47d4c8272227ff31c6c7d29931ddef74821c7"
 gem "rails-i18n", "~> 8.0", git: "https://github.com/svenfuchs/rails-i18n", ref: "54c1c7c2fdcc311427ec6f1dadd298a60db1ddef"
 gem "rack", "~> 2.2"
 gem "sprockets", "< 4"
@@ -138,7 +138,7 @@ group :test do
 end
 
 group :test, :development do
-  gem 'awesome_print'
+  #gem 'awesome_print'
   gem 'brakeman'
   gem 'pry-byebug'
   gem 'whiny_validation'
@@ -149,7 +149,7 @@ end
 
 group :development do
   gem 'bundler-audit'
-  gem 'active_record_query_trace', '~> 1.6', '>= 1.6.1'
+  #gem 'active_record_query_trace', '~> 1.6', '>= 1.6.1'
 end
 
 group :linters do
@@ -160,7 +160,7 @@ group :linters do
 end
 
 group :test, :development, :staging do
-  gem 'bullet', '>= 5.7.3'
+  #gem 'bullet', '>= 5.7.3'
   gem "factory_bot", require: false
   gem "faker", require: false
 end

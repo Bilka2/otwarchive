@@ -79,12 +79,12 @@ Rails.application.configure do
 
   # Enable Bullet gem to monitor application performance
   config.after_initialize do
-    Bullet.enable = true
-    Bullet.bullet_logger = true
-    Bullet.console = true
-    Bullet.add_footer = false
-    Bullet.rails_logger = true
-    Bullet.counter_cache_enable = false
+    # Bullet.enable = true
+    # Bullet.bullet_logger = true
+    # Bullet.console = true
+    # Bullet.add_footer = false
+    # Bullet.rails_logger = true
+    # Bullet.counter_cache_enable = false
   end
 
   # GitHub codespaces support
