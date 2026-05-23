@@ -186,9 +186,6 @@ GEM
     brakeman (7.0.2)
       racc
     builder (3.3.0)
-    bullet (8.1.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
@@ -674,7 +671,6 @@ GEM
       kgio (~> 2.6)
       raindrops (~> 0.7)
     unidecoder (1.1.2)
-    uniform_notifier (1.17.0)
     uri (1.1.1)
     useragent (0.16.11)
     vcr (6.3.1)
@@ -716,7 +712,6 @@ DEPENDENCIES
   bcrypt
   bcrypt_pbkdf (>= 1.0, < 2.0)
   brakeman
-  bullet (>= 5.7.3)
   bundler
   bundler-audit
   capistrano-gitflow_version (>= 0.0.3)
