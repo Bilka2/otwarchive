@@ -56,64 +56,64 @@ jobs:
       matrix:
         tests:
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseud_delete.feature
+            arguments: features/users/user_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_a/pseuds.feature
+            arguments: features/users/user_edit.feature
             libvips: true
 
     steps:
