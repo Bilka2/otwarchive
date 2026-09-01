@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - main
+      - experiments-pseuds-gifts
   pull_request:
     branches:
       - master
@@ -54,53 +55,66 @@ jobs:
       fail-fast: false
       matrix:
         tests:
-          - command: rake
-            arguments: db:otwseed
-          - command: rspec
-            arguments: spec/controllers
-          - command: rspec
-            arguments: spec/models
-          - command: rspec
-            arguments: --exclude-pattern 'spec/{controllers,models}/**/*.rb'
+          - command: cucumber
+            arguments: features/other_a/pseud_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/admins
+            arguments: features/other_a/pseud_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/bookmarks
-          - command: cucumber
-            arguments: features/collections
+            arguments: features/other_a/pseud_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/comments_and_kudos
-          - command: cucumber
-            arguments: features/gift_exchanges
-          - command: cucumber
-            arguments: features/importing
-            vcr: true
-          - command: cucumber
-            arguments: features/other_a
+            arguments: features/other_a/pseud_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/other_b
+            arguments: features/other_a/pseud_delete.feature
             libvips: true
           - command: cucumber
-            arguments: features/prompt_memes_a
+            arguments: features/other_a/pseud_delete.feature
+            libvips: true
           - command: cucumber
-            arguments: features/prompt_memes_b
+            arguments: features/other_a/pseud_delete.feature
+            libvips: true
           - command: cucumber
-            arguments: features/prompt_memes_c
+            arguments: features/other_a/pseud_delete.feature
+            libvips: true
           - command: cucumber
-            arguments: features/search
+            arguments: features/other_a/pseud_delete.feature
+            libvips: true
           - command: cucumber
-            arguments: features/tag_sets
+            arguments: features/other_a/pseud_delete.feature
+            libvips: true
           - command: cucumber
-            arguments: features/tags_and_wrangling
+            arguments: features/other_a/pseuds.feature
+            libvips: true
           - command: cucumber
-            arguments: features/users
+            arguments: features/other_a/pseuds.feature
+            libvips: true
           - command: cucumber
-            arguments: features/works
-            ebook: true
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
+          - command: cucumber
+            arguments: features/other_a/pseuds.feature
+            libvips: true
 
     steps:
       - name: Check out code
