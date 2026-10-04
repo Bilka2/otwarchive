@@ -172,6 +172,7 @@ Feature: Create, edit and delete bookmarks with javascript enabled
       And I post the work "Hello" with freeform "Redirect"
       And it is currently 1 second from now
       And I bookmark the work "Hello"
+      And the periodic filter count task is run
       And the periodic tag count task is run
       And all indexing jobs have been run
       And I go to the bookmarks tagged "Redirect"
