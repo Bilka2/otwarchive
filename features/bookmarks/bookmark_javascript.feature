@@ -168,12 +168,9 @@ Feature: Create, edit and delete bookmarks with javascript enabled
 
   Scenario: Deleting bookmarks from a canonical tag's bookmarks page redirects you back
     Given a canonical freeform "Redirect"
-      And it is currently 1 second from now
       And I post the work "Hello" with freeform "Redirect"
-      And it is currently 1 second from now
       And I bookmark the work "Hello"
       And the periodic filter count task is run
-      And the periodic tag count task is run
       And all indexing jobs have been run
       And I go to the bookmarks tagged "Redirect"
       And I follow "Delete" in the bookmarkable blurb for "Hello"
