@@ -168,6 +168,7 @@ Feature: Create, edit and delete bookmarks with javascript enabled
 
   Scenario: Deleting bookmarks from a canonical tag's bookmarks page redirects you back
     Given a canonical freeform "Redirect"
+      And it is currently 1 second from now
       And I post the work "Hello" with freeform "Redirect"
       And it is currently 1 second from now
       And I bookmark the work "Hello"
