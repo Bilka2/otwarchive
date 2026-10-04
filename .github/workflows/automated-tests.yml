@@ -76,25 +76,25 @@ jobs:
           - command: cucumber
             arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
           - command: cucumber
-            arguments: features/users
+            arguments: features/bookmarks
 
     steps:
       - name: Check out code

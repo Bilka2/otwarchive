@@ -167,8 +167,8 @@ Feature: Create, edit and delete bookmarks with javascript enabled
     Then I should be on the bookmarks page
 
   Scenario: Deleting bookmarks from a canonical tag's bookmarks page redirects you back
-    Given I post the work "Hello" with freeform "Redirect"
-      And the tag "Redirect" is canonized
+    Given a canonical freeform "Redirect"
+      And I post the work "Hello" with freeform "Redirect"
       And I bookmark the work "Hello"
       And all indexing jobs have been run
       And I go to the bookmarks tagged "Redirect"
