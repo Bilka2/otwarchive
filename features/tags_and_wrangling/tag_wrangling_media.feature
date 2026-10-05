@@ -201,9 +201,9 @@ Feature: Media tags
     Then I should see "Tag was updated."
     When I edit the tag "Big Media"
       And I choose "Greater Fandom" from the "tag_fandom_string_autocomplete" autocomplete
+      And it is currently 1 second from now
       And I press "Save changes"
     Then I should see "Tag was updated."
-      And the periodic tag count task is run
     When I go to the "Big Media" fandoms page
     Then I should see "Great Fandom"
       And I should see "Greater Fandom"
