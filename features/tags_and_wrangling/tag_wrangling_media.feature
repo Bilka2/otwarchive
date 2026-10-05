@@ -195,7 +195,6 @@ Feature: Media tags
       And I am logged in as a tag wrangler
       And I post the work "Some work" with fandom "Great Fandom"
       And I post the work "Some other work" with fandom "Greater Fandom"
-      And the periodic tag count task is run
     When I edit the tag "Great Fandom"
       And I choose "Big Media" from the "tag_media_string_autocomplete" autocomplete
       And I press "Save changes"
@@ -204,6 +203,7 @@ Feature: Media tags
       And I choose "Greater Fandom" from the "tag_fandom_string_autocomplete" autocomplete
       And I press "Save changes"
     Then I should see "Tag was updated."
+      And the periodic tag count task is run
     When I go to the "Big Media" fandoms page
     Then I should see "Great Fandom"
       And I should see "Greater Fandom"
