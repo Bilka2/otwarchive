@@ -56,45 +56,45 @@ jobs:
       matrix:
         tests:
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
           - command: cucumber
-            arguments: features/bookmarks
+            arguments: features/tags_and_wrangling
 
     steps:
       - name: Check out code
