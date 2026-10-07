@@ -74,6 +74,10 @@ en:
       work/chapters:
         base: 'Invalid chapter:'
         content: Content
+        endnotes: Chapters end notes
+        notes: Chapters notes
+        summary: Chapters summary
+        title: Chapters title
       work/creatorships:
         base: 'Invalid creator:'
         pseud_id: Pseud
