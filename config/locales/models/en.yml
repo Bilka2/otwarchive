@@ -69,7 +69,10 @@ en:
       work:
         chapter_total_display: Chapters
         endnotes: End notes
+        language: Language
+        notes: Notes
         summary: Summary
+        title: Title
         user_defined_tags_count: Fandom, relationship, character, and additional tags
         word_count: Words
       work/chapters:
