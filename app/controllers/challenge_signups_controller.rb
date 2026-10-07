@@ -102,7 +102,7 @@ class ChallengeSignupsController < ApplicationController
     # see ExportsHelper for export_csv method
     respond_to do |format|
       format.html do
-        not_allowed(collection_path(@collection)) && return if @collection.challenge_type == "PromptMeme"
+        not_allowed(collection_path(@collection)) and return if @collection.challenge_type == "PromptMeme"
 
         if @challenge.user_allowed_to_see_signups?(current_user) || privileged_collection_admin?
           @challenge_signups = @collection.signups.joins(:pseud)
