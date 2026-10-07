@@ -33,6 +33,8 @@ en:
       external_work:
         author: Creator
         user_defined_tags_count: Fandom, relationship, and character tags
+      gift:
+        recipient_name: Recipient name
       gift_exchange:
         offers_num_allowed: Number of offers allowed per sign-up
         offers_num_required: Number of offers required per sign-up
