@@ -1,4 +1,4 @@
-@tags @tag_wrangling
+@tags @tag_wrangling @elasticsearch
 Feature: Tag wrangling: assigning wranglers, using the filters on the Wranglers page
 
   Scenario: Log in as a tag wrangler and see wrangler pages.

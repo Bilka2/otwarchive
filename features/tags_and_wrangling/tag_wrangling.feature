@@ -1,4 +1,4 @@
-@users @tag_wrangling
+@users @tag_wrangling @elasticsearch
 Feature: Tag wrangling
 
   Scenario: Admin can create a tag wrangler using the interface

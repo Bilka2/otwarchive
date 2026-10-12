@@ -72,6 +72,10 @@ After "@no-js-emulation" do
   Capybara.use_default_driver
 end
 
+Before "@elasticsearch" do
+  Indexer.all.map(&:prepare_for_testing)
+end
+
 Before "@disable_caching" do
   ActionController::Base.perform_caching = false
 end
