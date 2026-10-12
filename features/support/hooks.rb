@@ -43,11 +43,13 @@ Before do
   REDIS_RESQUE.flushall
   REDIS_ROLLOUT.flushall
   REDIS_RATELIMITS.flushall
+end
 
+BeforeAll do
   Indexer.all.map(&:prepare_for_testing)
 end
 
-After do
+AfterAll do
   Indexer.all.map(&:delete_index)
 end
 
