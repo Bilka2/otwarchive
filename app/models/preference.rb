@@ -45,4 +45,12 @@ class Preference < ApplicationRecord
 
     l.iso
   end
+
+  def locale_for_interface
+    # Use preferred_locale to bypass the second $rollout check
+    l = Locale.find(preferred_locale)
+    return I18n.default_locale.to_s unless $rollout.active?(:set_locale_preference, user) && l.interface_enabled
+
+    l.iso
+  end
 end

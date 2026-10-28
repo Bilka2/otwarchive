@@ -3479,9 +3479,90 @@ en:
         related_works: Related Works (%{related_works_number})
         sign_ups: Sign-ups (%{signup_number})
   works:
-    admin_edit_form:
-      associations_title: Associations
+    form:
+      privacy:
+        legend: Privacy
+        visibility:
+          import_works_restricted: Only show imported works to registered users
+          keep_current: Keep current visibility settings
+          label: Visibility
+          multiple_works_restricted: Only show to registered users
+          restricted: Only show your work to registered users
+          unrestricted: Show to all
       required_information: Required information
+      preface:
+        legend: Preface
+        summary: Summary
+        title:
+          label: Work title
+          validation: We need a title! (At least %{min_length} character long, please.)
+      content:
+        legend: Work Text
+        rich_text: Rich Text
+        html: HTML
+        not_automatically_saved_html: "%{not_automatically_saved_note_bold} Text entered in the posting form is %{not_automatically_saved_negation_bold} automatically saved. Always keep a backup copy of your work."
+        not_automatically_saved_negation: "not"
+        not_automatically_saved_note: "Note:"
+        validation:
+          too_long:
+            one: "We salute your ambition! But sadly the content must be less than %{count} character long. (Maybe you want to create a multi-chaptered work?)"
+            other: "We salute your ambition! But sadly the content must be less than %{count} characters long. (Maybe you want to create a multi-chaptered work?)"
+          too_short:
+            one: Brevity is the soul of wit, but your content does have to be at least %{count} character long.
+            other: Brevity is the soul of wit, but your content does have to be at least %{count} characters long.
+      associations:
+        language:
+          label: Choose a language
+          required_to_select: Please select a language
+          help_title: Languages help
+        legend: Associations
+        open_assignments: Open Assignments
+        fulfill_assignment: Does this fulfill a challenge assignment
+        fulfill_claim: Fulfill a Claim
+        open_claims: Open Claims
+        post_to_collections: Post to Collections / Challenges
+        gift_to: Gift this work to
+        works_assignment_help_title: Fulfilling Assignments
+        collectibles_add_to_collection_help_title: Adding To Collections
+        works_recipients_help_title: Recipients
+        show_series_options: This work is part of a series
+        works_series_help_title: Choosing series
+        choose_series: "Choose one of your existing series:"
+        create_new_series: "Or create and use a new one:"
+        current_series: Current Series
+        remove_from_series: Remove Work From Series
+        show_chapters_options: This work has multiple chapters
+        chapter_title: "Chapter Title:"
+        chapter_1_of: Chapter 1 of
+        show_publication_date_options: Set a different publication date
+        works_backdating_help_title: Publication Date Options
+        set_publication_date: Set publication date
+        select_skin: Select work skin
+        works_skins_help_title: Work skins
+        public_work_skins: Public Work Skins
+      works_parents:
+        deleted_work: Deleted work
+        header: This work is a remix, a translation, a podfic, or was inspired by another work
+        remove: Remove
+        remove_confirm: Are you sure you want to remove the connection to this work?
+        help_title: Parent works help
+        unrevealed_work: Mystery Work
+        translation_link_help_title: Translation link
+        url:
+          label: URL
+          description: For a work in the Archive, only the URL is required.
+        language: Language
+        title: Title
+        author: Author
+        translation: This is a translation
+        current_parents: Current parent works
+      byline:
+        add_co-creators: Add co-creators
+        show_co-creator_options: Add co-creators?
+        creators: Creator/Pseud(s)
+        current_co-creators: Current co-creators
+        invited_co-creators: Invited co-creators
+        ambiguous_pseuds: "There's more than one user with the pseud %{name}. Please choose the one you want:"
     adult:
       caution: This work could have adult content. If you continue, you have agreed that you are willing to see such content.
       footnote: If you accept cookies from our site and you choose "Yes, Continue", you will not be asked again during this session (that is, until you close your browser). If you log in you can store your preference and never be asked again.
@@ -3490,13 +3571,6 @@ en:
         continue: Yes, Continue
         preferences: Set your preferences now
       page_title: Adult Content Warning
-    associations:
-      language:
-        choose: Choose a language
-      title: Associations
-    byline:
-      add_co-creators: Add co-creators
-      show_co-creator_options: Add co-creators?
     drafts:
       page_heading: Unposted Draft
       please_note: 'Please note:'
@@ -3511,12 +3585,11 @@ en:
       orphan_work: Orphan Work
       page_heading: Edit Work
       remove_me_as_co_creator: Remove Me As Co-Creator
+      remove_me_as_co_creator_confirmation: "This will remove you from all chapters as well. Are you sure?"
     edit_multiple:
       privacy_moderated_commenting_help_title: Comments moderated
       privacy_restricted_commenting_help_title: Who can comment on these works
       privacy_restricted_work_help_title: Registered users
-      works_languages_help_title: Languages help
-      works_skins_help_title: Work skins
     edit_tags:
       page_heading_html: Edit Work Tags for %{title}
     import:
@@ -3533,6 +3606,10 @@ en:
         other: 'Original Creator IDs:'
     navigate:
       page_heading_html: Chapter Index for %{work_link} by %{creators}
+    new:
+      import: Import From An Existing URL Instead?
+      restore_draft: 'Restore From Last Unposted Draft?'
+      page_heading: Post New Work
     new_import:
       content_policy: Content Policy
       post_notice_html: All works on AO3 must comply with our %{content_policy_link}. For more information, please refer to our %{tos_faq_link}.
@@ -3541,15 +3618,15 @@ en:
       privacy_restricted_work_help_title: Registered users
       tos_faq: Terms of Service FAQ
       works_languages_help_title: Languages help
-    permissions:
-      privacy: Privacy
-      visibility:
-        import_works_restricted: Only show imported works to registered users
-        keep_current: Keep current visibility settings
-        label: Visibility
-        multiple_works_restricted: Only show to registered users
-        restricted: Only show your work to registered users
-        unrestricted: Show to all
+    notes_form:
+      chapter_notes: Chapter Notes
+      notes: Notes
+      at_beginning: at the beginning
+      at_end: at the end
+      warning_beginning_notes: "Warning: Unchecking this box will delete the existing beginning note."
+      warning_end_notes: "Warning: Unchecking this box will delete the existing end note."
+      legend_notes: Notes
+      legend_end_notes: End Notes
     posting_fieldset:
       actions:
         cancel: Cancel
@@ -3563,8 +3640,6 @@ en:
       legend: Post Work
       post_notice_html: All works on AO3 must comply with our %{content_policy_link}. For more information, please refer to our %{tos_faq_link}.
       tos_faq: Terms of Service FAQ
-    preface:
-      title: Preface
     preview:
       page_heading: Preview
     preview_tags:
@@ -3583,42 +3658,31 @@ en:
     show_multiple:
       draft: " (Draft)"
       no_works: You have no works or drafts to edit.
-    skin:
-      select: Select work skin
     standard_form:
-      collectibles_add_to_collection_help_title: Adding To Collections
-      deleted_work: Deleted work
-      header: This work is a remix, a translation, a podfic, or was inspired by another work
       privacy_moderated_commenting_help_title: Comments moderated
       privacy_restricted_commenting_help_title: Who can comment on this work
       privacy_restricted_work_help_title: Registered users
-      remove: Remove
-      remove_confirm: Are you sure you want to remove the connection to this work?
-      unrevealed_work: Mystery Work
-      works_assignment_help_title: Fulfilling Assignments
-      works_backdating_help_title: Publication Date Options
       works_languages_help_title: Languages help
-      works_parents_help_title: Parent works help
-      works_recipients_help_title: Recipients
-      works_series_help_title: Choosing series
-      works_skins_help_title: Work skins
-      works_translation_link_help_title: Translation link
     work_approved_children:
       inspired_by:
         restricted_html: "[Restricted Work] by %{creator_link} (Log in to access.)"
         revealed_html: "%{work_link} by %{creator_link}"
         title: Works inspired by this one
         unrevealed: A work in an unrevealed collection
-    work_form_associations_language:
-      works_languages_help_title: Languages help
     work_form_tags:
       additional_tags_help_title: Additional tags help
       categories_help_title: Categories help
       characters_help_title: Characters help
       fandoms_help_title: Fandom help
+      note:
+        one: Tags are comma separated, %{count} character per tag. Fandom, relationship, character, and additional tags must not add up to more than %{limit}. Archive warning, category, and rating tags do not count toward this limit.
+        other: Tags are comma separated, %{count} characters per tag. Fandom, relationship, character, and additional tags must not add up to more than %{limit}. Archive warning, category, and rating tags do not count toward this limit.
       ratings_help_title: Rating help
       relationships_help_title: Relationships help
       warnings_help_title: Warning help
+      legend: Tags
+      landmark: Tags
+      fandom_delay_to_show_up: If this is the first work for a fandom, it may not show up in the fandoms page for a day or two.
     work_header_navigation:
       chapter_index:
         button: Chapter Index

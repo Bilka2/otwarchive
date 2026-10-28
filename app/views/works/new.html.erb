@@ -1,5 +1,6 @@
+<% I18n.with_locale(interface_locale) do %>
 <!--Descriptive page name, messages and instructions-->
-<h2 class="heading"><%= ts('Post New Work') %></h2>
+<h2 class="heading"><%= t(".page_heading") %></h2>
 
 <%= error_messages_for @work %>
 <!--/descriptions-->
@@ -8,11 +9,11 @@
 <ul class="navigation actions">
   <% if @unposted %>
     <li>
-      <%= link_to ts('Restore From Last Unposted Draft?'), url_for(:action => :new, :load_unposted => true) %>
+      <%= link_to t(".restore_draft"), url_for(action: :new, load_unposted: true) %>
     </li>
   <% end %>
   <li>
-    <%= link_to( ts('Import From An Existing URL Instead?'),
+    <%= link_to( t(".import"),
       {:url => {:controller => :works, :action => :new, :import => true}},
       :href => url_for(:controller => :works, :action => :new, :import => true)) %>
   </li>
@@ -22,3 +23,4 @@
 <!--main content-->
 <%= render :partial => "standard_form" %>
 <!--/content-->
+<% end %>

@@ -1,10 +1,66 @@
 ---
 de:
+  application_helper:
+    generate_countdown_html:
+      characters_left_html: "Zeichen übrig: %{characters}"
+    text_limited_html: Text mit eingeschränkter HTML-Unterstützung %{help_link}
   activerecord:
     attributes:
       work:
         chapter_total_display: Kapitel
         summary: Zusammenfassung
+        notes: Anmerkungen
+        endnotes: Schlussanmerkungen
+        language: Sprache
+        title: Titel
+        user_defined_tags_count: Fandomtags, Beziehungstags, Charaktertags, und zusätzliche Tags
+      work/chapters:
+        base: 'Ungültiges Kapitel:'
+        content: Inhalt
+    errors:
+      intro:
+        work: "Uwwu owie mein Werk :("
+      models:
+        chapter:
+          attributes:
+            content:
+              too_short:
+                one: muss mindestens ein Zeichen lang sein.
+                other: muss mindestens %{count} Zeichen lang sein.
+              too_long:
+                one: muss weniger als ein Zeichen lang sein.
+                other: muss weniger als %{count} Zeichen lang sein.
+        work:
+          attributes:
+            rating_string:
+              blank: "^Bitte wähle eine Alterseinstufung."
+            archive_warning_string:
+              blank: "^Bitte wähle mindestens eine Warnung."
+            fandom_string:
+              blank: "^Bitte wähle mindestens ein Fandom."
+            language:
+              blank: muss ausgewählt werden.
+            user_defined_tags_count:
+              at_most: müssen insgesamt weniger als %{count} sein. Dein Werk hat insgesamt %{value} dieser Tags, du musst also %{diff} Tags entfernen.
+            title:
+              too_short:
+                one: muss mindestens ein Zeichen lang sein.
+                other: muss mindestens %{count} Zeichen lang sein.
+              too_long:
+                one: muss weniger als ein Zeichen lang sein.
+                other: muss weniger als %{count} Zeichen lang sein.
+            summary:
+              too_long:
+                one: muss weniger als ein Zeichen lang sein.
+                other: muss weniger als %{count} Zeichen lang sein.
+            notes:
+              too_long:
+                one: müssen weniger als ein Zeichen lang sein.
+                other: müssen weniger als %{count} Zeichen lang sein.
+            endnotes:
+              too_long:
+                one: müssen weniger als ein Zeichen lang sein.
+                other: müssen weniger als %{count} Zeichen lang sein.
     models:
       archive_warning:
         one: Warnung
@@ -33,6 +89,9 @@ de:
       series:
         one: Serie
         other: Serien
+      work:
+        one: Werk
+        other: Werke
   comment_mailer:
     comment_notification_footer:
       comment_thread:
@@ -242,6 +301,12 @@ de:
           nicht in deine Sprache übersetzt wurde, wird sie auf Englisch versendet.
         header: Sprache festlegen
       page_heading: Spracheinstellungen
+    tags_relationships:
+      description: Die Beziehungen in deinem Werk. Sofern möglich, sollten vollständige Namen verwendet werden (zum Beispiel "Mickey Mouse/Minnie Mouse" oder "Rodney McKay & John Sheppard"). Du kannst mehrere Beziehungen angeben, getrennt durch Kommata. Bitte beachte, dass alle von Nutzern erstellten Tags maximal 150 Zeichen lang sein dürfen. Falls dein Werk eine große polyamore Beziehung oder mehrere Charaktere mit langen Namen enthält, überlege die Namen auf Vornamen oder Nachnamen mit Initialen zu verkürzen, um das Zeichenlimit einzuhalten und die Namen dennoch erkennbar zu behalten.
+      more_info:
+        html: "(Für weitere Informationen, siehe %{tags_faq_section_link}.)"
+        tags_faq_section: Tags in den häufig gestellte Fragen
+      page_heading: Beziehungstags
   kudo_mailer:
     batch_kudo_notification:
       guest:
@@ -765,3 +830,94 @@ de:
             Vorgehensweisen melden dich von allen laufenden Sitzungen auf sämtlichen
             Geräten ab.'
         subject: "[%{app_name}] Setze dein Passwort zurück"
+  works:
+    new:
+      page_heading: Neues Werk Veröffentlichen
+      import: Stattdessen eine URL importieren?
+      restore_draft: Letzten Entwurf wiederherstellen?
+    work_form_tags:
+      fandom_delay_to_show_up: Falls dies das erste Werk für ein Fandom ist, kann es ein oder zwei Tage dauern, bis das Fandom auf der Fandom-Seite erscheint.
+      note: Tags werden durch Kommas getrennt; %{count} Zeichen pro Tag. Die Gesamtzahl der Fandomtags, Beziehungstags, Charaktertags, und zusätzliche Tags darf %{limit} nicht überschreiten. Warnungen, Kategorien und Alterseinfstufungen zählen nicht zu diesem Limit.
+      relationships_help_title: Beziehungstagshilfe
+    notes_form:
+      chapter_notes: Kapitelanmerkungen
+      notes: Anmerkungen
+      at_beginning: am Anfang
+      at_end: am Schluss
+      warning_beginning_notes: "Warnung: Wenn du diese Box deaktivierst, werden die vorhandenen Anfangsanmerkungen gelöscht."
+      warning_end_notes: "Warnung: Wenn du diese Box deaktivierst, werden die vorhandenen Schlussanmerkungen gelöscht."
+      legend_notes: Anmerkungen
+      legend_end_notes: Schlussanmerkungen
+    form:
+      privacy:
+        legend: Privatsphäre
+        visibility:
+          restricted: Werk nur registrierten Nutzer*innen zeigen
+      associations:
+        language:
+          label: Sprache auswählen
+          required_to_select: Bitte wähle eine Sprache aus
+        legend: Verknüpfungen
+        open_assignments: Unerfüllte Aufgaben
+        fulfill_assignment: Erfüllt dies eine Herausforderungsaufgabe
+        post_to_collections: In einer Sammlung/Herausforderung veröffentlichen
+        gift_to: Schenke dieses Werk
+        show_series_options: Dieses Werk ist Teil einer Serie
+        choose_series: "Wähle eine bestehende Serie aus:"
+        create_new_series: "Order erstelle und nutze eine neue:"
+        show_chapters_options: Dieses Werk hat mehrere Kapitel
+        chapter_title: "Kapiteltitel:"
+        chapter_1_of: Kapitel 1 von
+        show_publication_date_options: Wähle ein anderes Veröffentlichungsdatum
+        set_publication_date: Veröffentlichungsdatum auswählen
+        select_skin: Werkdesign auswählen
+        public_work_skins: Öffentliche Werkdesigns
+      works_parents:
+        header: Dieses Werk ist ein Remix, eine Übersetzung, eine Podfic oder basiert auf einem anderen Werk
+        url:
+          label: URL
+          description: Für ein Werk auf AO3 wird nur die URL benötigt.
+        language: Sprache
+        title: Titel
+        author: Autor*in
+        translation: Dies ist eine Übersetzung
+      required_information: Pflichtfeld
+      preface:
+        legend: Vorwort
+        title:
+          validation: Wir brauchen einen Titel! (Mindestens %{min_length} Zeichen lang, bitte.)
+          label: Titel
+        summary: Zusammenfassung
+      byline:
+        show_co-creator_options: Mitschöpfer*in hinzufügen?
+        creators: Schöpfer*in/Pseudonyme
+      content:
+        legend: Textteil
+        rich_text: Rich Text
+        html: HTML
+        not_automatically_saved_html: "%{not_automatically_saved_note_bold} Text im Textfeld wird %{not_automatically_saved_negation_bold} automatisch gespeichert. Backup gewinnt."
+        not_automatically_saved_negation: "nicht"
+        not_automatically_saved_note: "Notiz:"
+    posting_fieldset:
+      actions:
+        cancel: Abbrechen
+        edit: Bearbeiten
+        please_wait: Bitte warten...
+        post: Veröffentlichen
+        preview: Vorschau
+        save_draft: Entwurf Speichern
+        update: Aktualisieren
+      content_policy: Inhaltsrichtlinie
+      legend: Werk Veröffentlichen
+      post_notice_html: Alle Werke auf AO3 müssen unserer %{content_policy_link} entsprechen. Weitere Informationen findest du in unserem %{tos_faq_link}.
+      tos_faq: FAQ zu den Nutzungsbedingungen
+  comments:
+    commentable:
+      permissions:
+        moderated_commenting:
+          enable: Kommentarmoderation einschalten
+        options:
+          disable_all: Niemand kann kommentieren
+          disable_anon: Nur registrierte Nutzer*innen können kommentieren
+          enable_all: Registrierte Nutzer*innen and Gäste können kommentieren
+          label: Wer kann dieses Werk kommentieren

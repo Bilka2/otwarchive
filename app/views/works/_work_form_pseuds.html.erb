@@ -5,7 +5,7 @@
 <% has_cocreators = (works.flat_map(&:pseuds).uniq - current_user.pseuds).any? %>
 <% has_multiple_pseuds = current_user.pseuds.length > 1 %>
 <% if has_multiple_pseuds || has_cocreators %>
-  <dt><%= form.label :current_user_pseud_ids, ts("Creator/Pseud(s)") %></dt>
+  <dt><%= form.label :current_user_pseud_ids, t("works.form.byline.creators") %></dt>
   <dd>
       <% if has_multiple_pseuds %>
         <%= form.collection_select :current_user_pseud_ids, current_user.pseuds, :id, :name, { include_hidden: false }, { multiple: true } %>
@@ -19,5 +19,5 @@
   </dd>
 <% end %>
 
-<dt><%= form.label :pseuds_to_add, t("works.byline.add_co-creators") %></dt>
+<dt><%= form.label :pseuds_to_add, t("works.form.byline.add_co-creators") %></dt>
 <dd><%= form.text_field :pseuds_to_add, autocomplete_options("pseud", data: { autocomplete_min_chars: 0 }) %></dd>

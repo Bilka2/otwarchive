@@ -1,6 +1,8 @@
 ---
 en:
   application_helper:
+    generate_countdown_html:
+      characters_left_html: "%{characters} characters left"
     allowed_html_instructions:
       html_help_title: Html help
     help_modal:

@@ -123,14 +123,14 @@
   </fieldset>
 
   <fieldset>
-    <legend><%= t("works.permissions.privacy") %></legend>
-    <h3 class="landmark heading"><%= t("works.permissions.privacy") %></h3>
+    <legend><%= t("works.form.privacy.legend") %></legend>
+    <h3 class="landmark heading"><%= t("works.form.privacy.legend") %></h3>
     <dl>
       <dt class="restricted">
         <%= check_box_tag "restricted" %>
       </dt>
       <dd class="restricted">
-        <%= label_tag "restricted", t("works.permissions.visibility.import_works_restricted") %>
+        <%= label_tag "restricted", t("works.form.privacy.visibility.import_works_restricted") %>
         <%= link_to_help_modal(help_privacy_restricted_work_path, t(".privacy_restricted_work_help_title")) %>
       </dd>
 
